@@ -5,6 +5,9 @@ class Model_Comment extends \Orm\Model
 	protected static $_properties = array(
 		'id',
 		'restaurant_id',
+		'department',
+		'name',
+		'body',
 		'created_at',
 		'updated_at',
 	);

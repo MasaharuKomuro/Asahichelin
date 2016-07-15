@@ -8,7 +8,10 @@ class Create_comments
 	{
 		\DBUtil::create_table('comments', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
-			'restaurant_id' => array('constraint' => 11, 'type' => 'int', 'varchar' => '50', 'text' => true),
+			'restaurant_id' => array('constraint' => 11, 'type' => 'int'),
+			'department' => array('constraint' => 50, 'type' => 'varchar'),
+			'name' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
 			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 

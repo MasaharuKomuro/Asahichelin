@@ -4,7 +4,7 @@
         <table>
             <tr><td>場所</td><td><input type="text" name="place"></td></tr>
             <tr><td>最寄り駅</td><td><input type="text" name="station"></td></tr>
-            <tr><td>店名</td><td><input type="text" name="restaurant_name"></td></tr>
+            <tr><td>店名</td><td><input type="text" name="name"></td></tr>
             <tr><td>業態</td><td><input type="text" name="kind"></td></tr>
             <tr><td>個室</td><td>あり<input type="radio" name="private_room" value="true" checked> | なし<input type="radio" name="private_room" value="false"></td></tr>
             <tr><td>連絡先</td><td><input type="text" name="phone"></td></tr>

@@ -8,7 +8,17 @@ class Create_restaurants
 	{
 		\DBUtil::create_table('restaurants', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
-			'place' => array('constraint' => 50, 'type' => 'varchar', 'varchar' => '100', 'bool' => true, 'int' => true, 'text' => true),
+			'place' => array('constraint' => 50, 'type' => 'varchar'),
+			'station' => array('constraint' => 50, 'type' => 'varchar'),
+			'name' => array('constraint' => 50, 'type' => 'varchar'),
+			'kind' => array('constraint' => 20, 'type' => 'varchar'),
+			'private_room' => array('type' => 'bool'),
+			'phone' => array('constraint' => 20, 'type' => 'varchar'),
+			'cost' => array('constraint' => 11, 'type' => 'int'),
+			'department' => array('constraint' => 50, 'type' => 'varchar'),
+			'recommender' => array('constraint' => 50, 'type' => 'varchar'),
+			'link' => array('constraint' => 100, 'type' => 'varchar'),
+			'other' => array('type' => 'text'),
 			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 
