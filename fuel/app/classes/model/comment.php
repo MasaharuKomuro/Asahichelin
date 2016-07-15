@@ -1,10 +1,10 @@
 <?php
 
-class Model_Post extends \Orm\Model
+class Model_Comment extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id',
-		'place',
+		'restaurant_id',
 		'created_at',
 		'updated_at',
 	);
@@ -20,6 +20,6 @@ class Model_Post extends \Orm\Model
 		),
 	);
 
-	protected static $_table_name = 'posts';
+	protected static $_table_name = 'comments';
 
 }

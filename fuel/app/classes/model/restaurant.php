@@ -1,6 +1,6 @@
 <?php
 
-class Model_Post extends \Orm\Model
+class Model_Restaurant extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id',
@@ -20,6 +20,16 @@ class Model_Post extends \Orm\Model
 		),
 	);
 
-	protected static $_table_name = 'posts';
+	protected static $_table_name = 'restaurants';
+
+    protected static $_has_many = array(
+        'comments' => array(
+            'key_from' => 'id',
+            'model_to' => 'Model_Comment',
+            'key_to' => 'restaurant_id',
+            'cascade_save' => false,
+            'cascade_delete' => true,
+        )
+    );
 
 }
