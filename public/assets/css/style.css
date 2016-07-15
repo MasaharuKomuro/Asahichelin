@@ -1,0 +1,163 @@
+body {
+    color: black;
+    margin: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: Raleway, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+table {
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+#header {
+    margin: 0;
+    text-align: left;
+    /*background: #cc0000;*/
+    background: #cccccc;
+    outline: solid 1px blue;
+    font-size: 0;
+    text-decoration: none;
+    color: black;
+}
+
+#header #nav {
+    width: 1200px;
+    height: 16px;
+    margin: 0 auto;
+    padding: 15px 0;
+    outline: solid 1px yellow;
+}
+
+#header #logo {
+    display: inline-block;
+}
+
+#header #logo a {
+    padding: 15px 20px;
+    font-weight: bolder;
+    font-size: 1.0rem;
+    text-decoration: none;
+    background: #bb0000;
+    color: white;
+}
+
+
+#header #nav-menu {
+    display: inline-block;
+}
+
+#header #nav-menu ul {
+    display: inline;
+    font-size: 0rem;
+}
+
+#header #nav-menu li {
+    display: inline;
+    font-size: 1.0rem;
+}
+
+
+#header #nav-menu a {
+    padding: 15px 20px;
+    text-decoration: none;
+    text-size: 1.0rem;
+    color: black;
+}
+
+#header #nav-menu a:hover {
+    background: #333333;
+    text-decoration: none;
+    text-size: 1.0rem;
+    color: white;
+}
+
+#contents {
+    width: 1200px;
+    height: 760px;
+    padding: 30px 0 100px 0;
+    margin: 0px auto;
+    background: #eeeeee;
+    outline: solid 1px green;
+}
+
+#contents #top-image {
+    width: 620px;
+    height: 700px;
+    margin: 30px auto;
+    background: url('../img/AsahichelinEach.002.jpg');
+    border-radius: 1rem;
+    background-position: -200px -50px;
+}
+
+#contents #restaurant_list {
+    margin: 20px auto;
+}
+
+#contents #register_form {
+    width: 620px;
+    height: 620px;
+    padding: 20px 0;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.icon-img {
+    width: 60px;
+    height:60px;
+}
+
+.buttons {
+    padding: 450px 0 0 0;
+}
+
+#button-register {
+    display: inline-block;
+    width: 100px;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 4px;
+    background-color: #dd5500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+#button-search {
+    display: inline-block;
+    width: 100px;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 4px;
+    background-color: #dd5500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+
+#button-register:hover {
+    opacity: 0.9;
+}
+
+#button-search:hover {
+    opacity: 0.9;
+}
+
+#footer {
+    width: 1200px;
+    padding: 10px 0;
+    margin: 0 auto;
+    background: #eeeeee;
+    outline: solid 1px orange;
+    font-size: small;
+    text-align: right;
+}
