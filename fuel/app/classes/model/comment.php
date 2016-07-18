@@ -3,13 +3,36 @@
 class Model_Comment extends \Orm\Model
 {
 	protected static $_properties = array(
-		'id',
-		'restaurant_id',
-		'department',
-		'name',
-		'body',
-		'created_at',
-		'updated_at',
+		'id' => array(
+            'form' => array('type' => 'hidden'),
+        ),
+		'restaurant_id' => array(
+            'form' => array('type' => 'hidden'),
+        ),
+		'department' => array(
+            'data_type' => 'varchar',
+            'label' => '部門',
+            'validation' => array('required', 'max_length'=>array(50)),
+            'form' => array('type' => 'text'),
+        ),
+		'name' => array(
+            'data_type' => 'varchar',
+            'label' => '氏名',
+            'validation' => array('required', 'max_length'=>array(50)),
+            'form' => array('type' => 'text'),
+        ),
+		'body' => array(
+            'data_type' => 'text',
+            'label' => 'コメント欄',
+            'validation' => array('required'),
+            'form' => array('type' => 'textarea'),
+        ),
+		'created_at' => array(
+            'form' => array('type' => 'hidden'),
+        ),
+		'updated_at' => array(
+            'form' => array('type' => 'hidden'),
+        ),
 	);
 
 	protected static $_observers = array(

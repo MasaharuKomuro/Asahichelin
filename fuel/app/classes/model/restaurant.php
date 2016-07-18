@@ -3,7 +3,9 @@
 class Model_Restaurant extends \Orm\Model
 {
 	protected static $_properties = array(
-		'id',
+		'id' => array(
+            'form' => array('type' => 'hidden'),
+        ),
         'place' => array(
             'data_type' => 'varchar',
             'label' => '場所',
@@ -90,5 +92,14 @@ class Model_Restaurant extends \Orm\Model
 	);
 
 	protected static $_table_name = 'restaurants';
+    protected static $_has_many = array(
+        'comments' => array(
+            'model_to' => 'Model_Comment',
+            'key_from' => 'id',
+            'key_to' => 'restaurant_id',
+            'cascade_save' => false,
+            'cascade_delete' => true,
+        ),
+    );
 
 }

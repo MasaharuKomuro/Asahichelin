@@ -2,7 +2,7 @@ body {
     color: black;
     margin: 0;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     font-family: Raleway, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
@@ -13,15 +13,136 @@ table {
 
 table, th, td {
     padding: 5px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    font-size: 1.0rem;
+}
+
+th {
+    font-weight: bold;
+}
+
+div .restaurant-container {
+    min-height: 100px;
+}
+
+div .restaurant-info table{
+    width: 1200px;
+    /*border: 1px solid black;*/
+}
+
+div .restaurant-info th, td{
+    /*border: 1px solid black;*/
+}
+
+th.place{
+    width: 50px;
+}
+
+th.station{
+    width: 50px;
+}
+
+th.kind{
+    width: 50px;
+}
+
+th.private_room{
+    width: 50px;
+}
+
+th.phone{
+    width: 100px;
+}
+
+th.cost{
+    width: 100px;
+}
+
+th.link{
+    width: 200px;
+}
+
+th.other{
+    width: 200px;
+}
+/*
+div .restaurant-info td .place{
+    width: 20px;
+}
+
+td .station{
+    width: 20px;
+}
+
+td .kind{
+    width: 20px;
+}
+
+div .restaurant-info td .private_room{
+    width: 40px;
+}
+
+div .restaurant-info td .phone{
+    width: 20px;
+}
+
+div .restaurant-info td .cost{
+    width: 20px;
+}
+
+div .restaurant-info td .link{
+    width: 20px;
+}
+
+div .restaurant-info td .other{
+    width: 20px;
+}
+*/
+
+div .user-info-container {
+    float: right;
+}
+/*
+table .user-info {
+    border: 0px;
+}
+
+th .user-info {
+    border: 0px;
+}
+
+td .user-info {
+    border: 0px;
+}
+*/
+
+.restaurant-name {
+    margin: 30px 0 30px 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+hr {
+    clear: both;
+}
+
+small {
+    font-size: 0.8rem;
+}
+
+.validation_error {
+    background-color: #ffecec;
 }
 
 #header {
-    margin: 0;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
     text-align: left;
     /*background: #cc0000;*/
     background: #cccccc;
-    outline: solid 1px blue;
+    /*outline: solid 1px blue;*/
     font-size: 0;
     text-decoration: none;
     color: black;
@@ -32,7 +153,7 @@ table, th, td {
     height: 16px;
     margin: 0 auto;
     padding: 15px 0;
-    outline: solid 1px yellow;
+    /*outline: solid 1px yellow;*/
 }
 
 #header #logo {
@@ -80,20 +201,20 @@ table, th, td {
 
 #contents {
     width: 1200px;
-    height: 760px;
-    padding: 30px 0 100px 0;
+    min-height: 760px;
+    padding: 76px 0 100px 0;
     margin: 0px auto;
-    background: #eeeeee;
-    outline: solid 1px green;
+    /*background: #eeeeee;*/
+    outline: solid 1px #666666;
 }
 
 #contents #top-image {
-    width: 620px;
-    height: 700px;
+    width: 680px;
+    height: 500px;
     margin: 30px auto;
     background: url('../img/AsahichelinEach.002.jpg');
     border-radius: 1rem;
-    background-position: -200px -50px;
+    background-position: -170px -130px;
 }
 
 #contents #restaurant_list {
@@ -114,7 +235,7 @@ table, th, td {
 }
 
 .buttons {
-    padding: 450px 0 0 0;
+    padding: 370px 0 0 0;
 }
 
 #button-register {
@@ -130,6 +251,10 @@ table, th, td {
     font-size: 1.0rem;
 }
 
+#button-register:hover {
+    opacity: 0.9;
+}
+
 #button-search {
     display: inline-block;
     width: 100px;
@@ -143,21 +268,58 @@ table, th, td {
     font-size: 1.0rem;
 }
 
-
-#button-register:hover {
-    opacity: 0.9;
-}
-
 #button-search:hover {
     opacity: 0.9;
 }
+
+.restaurant-buttons {
+    clear:right;
+    float:right;
+}
+
+.button-edit {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 0 5px 0;
+    border-radius: 4px;
+    background-color: #4444bb;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+.button-edit:hover {
+    opacity: 0.9;
+}
+
+.button-detail {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px 10px 0;
+    border-radius: 4px;
+    background-color: #44bb44;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+.button-detail:hover {
+    opacity: 0.9;
+}
+
 
 #footer {
     width: 1200px;
     padding: 10px 0;
     margin: 0 auto;
     background: #eeeeee;
-    outline: solid 1px orange;
+    /*outline: solid 1px orange;*/
     font-size: small;
     text-align: right;
+}
+
+div.comment {
+    clear: right;
 }
