@@ -14,7 +14,7 @@ class Model_Restaurant extends \Orm\Model
         ),
         'station' => array(
             'data_type' => 'varchar',
-            'label' => '最寄り駅',
+            'label' => '最寄り駅 (路線名)',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
@@ -26,9 +26,31 @@ class Model_Restaurant extends \Orm\Model
         ),
 		'kind' => array(
             'data_type' => 'varchar',
-            'label' => '業態',
-            'validation' => array('required', 'max_length'=>array(20)),
-            'form' => array('type' => 'text'),
+            'label' => 'ジャンル',
+            'validation' => array('required'),
+            'form' => array('type' => 'select', 'options' => array(
+                                                                    '和食' => '和食',
+                                                                    '洋食・西洋料理' => '洋食・西洋料理',
+                                                                    '中華料理' => '中華料理',
+                                                                    'アジア・エスニック' => 'アジア・エスニック',
+                                                                    'カレー' => 'カレー',
+                                                                    '焼肉・ホルモン' => '焼肉・ホルモン',
+                                                                    '鍋' => '鍋',
+                                                                    '居酒屋・ダイニングバー' => '居酒屋・ダイニングバー',
+                                                                    'ファミレス' => 'ファミレス',
+                                                                    'ラーメン' => 'ラーメン',
+                                                                    'カフェ' => 'カフェ',
+                                                                    'バー' => 'バー',
+                                                                    'パブ' => 'パブ',
+                                                                    'ラウンジ' => 'ラウンジ',
+                                                                    'ワインバー' => 'ワインバー',
+                                                                    'ビアガーデン' => 'ビアガーデン',
+                                                                    'ビアバー' => 'ビアバー',
+                                                                    '旅館' => '旅館',
+                                                                    'その他' => 'その他',
+                                                                   )
+                            ),
+
         ),
 		'private_room' => array(
             'data_type' => 'bool',
@@ -48,15 +70,15 @@ class Model_Restaurant extends \Orm\Model
             'validation' => array('required', 'valid_string'=>array(array('numeric'))),
             'form' => array('type' => 'text'),
         ),
-		'department' => array(
-            'data_type' => 'varchar',
-            'label' => '部門',
-            'validation' => array('required', 'max_length'=>array(50)),
-            'form' => array('type' => 'text'),
-        ),
 		'recommender' => array(
             'data_type' => 'varchar',
             'label' => '推薦者',
+            'validation' => array('required', 'max_length'=>array(50)),
+            'form' => array('type' => 'text'),
+        ),
+		'department' => array(
+            'data_type' => 'varchar',
+            'label' => '所属部門',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
@@ -101,5 +123,15 @@ class Model_Restaurant extends \Orm\Model
             'cascade_delete' => true,
         ),
     );
+
+    static public function get_labels() {
+        $labels = array();
+        foreach (self::$_properties as $property => $arr) {
+            if (isset($arr['label'])) {
+                $labels[$property] = $arr['label'];
+            }
+        }
+        return $labels;
+    }
 
 }

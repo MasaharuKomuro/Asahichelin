@@ -13,6 +13,7 @@ class Controller_Restaurant extends Controller_Template
 	{
         $data = array();
         $data['results'] = Model_Restaurant::find('all');
+        $data['restaurant_labels'] = Model_Restaurant::get_labels();
 		$this->template->title = 'ASAHICHELIN List';
 		$this->template->content = View::forge('restaurant/list', $data);
 	}
@@ -21,6 +22,7 @@ class Controller_Restaurant extends Controller_Template
 	{
         $data = array();
         $restaurant = Model_Restaurant::find($id);
+        $data['restaurant_labels'] = Model_Restaurant::get_labels();
         if (!isset($restaurant)) {
             Response::redirect('restaurant/list');
         }
@@ -52,18 +54,14 @@ class Controller_Restaurant extends Controller_Template
     {
         $data = array();
         $restaurant = Model_Restaurant::find($id);
+        $data['restaurant_labels'] = Model_Restaurant::get_labels();
         if (!isset($restaurant)) {
             Response::redirect('restaurant/list');
         }
         $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
-        $fieldset->add_after('delete', '記事削除', array('type' => 'checkbox', 'value' => '削除'), array(), 'other');
-        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '更新'), array(), 'delete');
+        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '更新'), array(), 'other');
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
         $fieldset->field('cost')->set_description('円');
-        if ($fieldset->input('delete')) {
-            $restaurant->delete();
-                Response::redirect('restaurant/list');
-        }
         if ($fieldset->validation()->run()) {
             $fields = $fieldset->validated();
             $restaurant->place = $fields['place'];
@@ -89,10 +87,42 @@ class Controller_Restaurant extends Controller_Template
         $this->template->set('content', $fieldset->build(), false);
     }
 
+    public function action_edit_comment($r_id = 0, $c_id = 0) {
+        $data = array();
+        $restaurant = Model_Restaurant::find($r_id);
+        if (!isset($restaurant)) {
+            Response::redirect('restaurant/list');
+        }
+        $data['restaurant'] = $restaurant;
+        $data['restaurant_labels'] = Model_Restaurant::get_labels();
+        $comment = Model_Comment::find($c_id);
+        if (!isset($comment)) {
+            Response::redirect('restaurant/list');
+        }
+        $fieldset = Fieldset::forge()->add_model('Model_Comment');
+        $fieldset->field('restaurant_id')->set_value($restaurant->id);
+        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => 'コメント更新'), array(), 'body');
+        $fieldset->populate($comment);
+        if ($fieldset->validation()->run()) {
+            $fields = $fieldset->validated();
+            $comment->restaurant_id = $fields['restaurant_id'];
+            $comment->department = $fields['department'];
+            $comment->name = $fields['name'];
+            $comment->body = $fields['body'];
+            if ($comment->save()) {
+                Response::redirect("restaurant/detail/$restaurant->id");
+            }
+        }
+        $fieldset->populate($fieldset->validated());
+        $data['fieldset'] = $fieldset->build();
+		$this->template->title = 'ASAHICHELIN Edit Comment';
+		$this->template->content = View::forge('restaurant/edit_comment', $data, false);
+    }
+
     public function action_form()
     {
         $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
-        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '投稿'), array(), 'other');
+        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '登録'), array(), 'other');
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
         $fieldset->field('cost')->set_description('円');
         if ($fieldset->validation()->run()) {
@@ -124,8 +154,20 @@ class Controller_Restaurant extends Controller_Template
 
 	public function action_search()
 	{
+        $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
+        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '検索'), array(), 'other');
+        $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
+        $fieldset->field('cost')->set_description('円');
+        if ($fieldset->validation()->run()) {
+            Response::redirect('restaurant/list');
+        }
+        else {
+            $fieldset->populate($fieldset->validated());
+        }
+        #$true_or_false = $fieldset->validation()->run();
 		$this->template->title = 'ASAHICHELIN Search';
-		$this->template->content = View::forge('restaurant/search');
+		#$this->template->title = $true_or_false;
+        $this->template->set('content', $fieldset->build(), false);
 	}
 
 }

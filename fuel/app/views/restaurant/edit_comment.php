@@ -41,13 +41,7 @@
         </table>
     </div>
 <hr>
-<?php foreach($comments as $comment): ?>
-    <?php echo $comment->body ?><br><br>
-    <?php echo $comment->department ?>
-    <?php echo $comment->name ?><br><br>
-    <a class="button-edit" href="/restaurant/edit_comment/<?php echo $restaurant->id.'/'.$comment->id ?>"><small>編集</small></a>
-    <hr>
-<?php endforeach; ?>
 <div class="comment">
     <?php echo $fieldset;?>
 </div>
+

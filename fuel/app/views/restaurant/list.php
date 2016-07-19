@@ -5,14 +5,14 @@
             <div class="restaurant-info">
                 <table>
                     <tr>
-                        <th class="place">場所</th>
-                        <th class="station">最寄り駅</th>
-                        <th class="kind">業態</th>
-                        <th class="private_room">個室</th>
-                        <th class="phone">連絡先</th>
-                        <th class="cost">一人あたり予算</th>
-                        <th class="link">店舗情報URL</th>
-                        <th class="other">備考</th>
+                        <th class="place"><?php echo $restaurant_labels['place']?></th>
+                        <th class="station"><?php echo $restaurant_labels['station']?></th>
+                        <th class="kind"><?php echo $restaurant_labels['kind']?></th>
+                        <th class="private_room"><?php echo $restaurant_labels['private_room']?></th>
+                        <th class="phone"><?php echo $restaurant_labels['phone']?></th>
+                        <th class="cost"><?php echo $restaurant_labels['cost']?></th>
+                        <th class="link"><?php echo $restaurant_labels['link']?></th>
+                        <th class="other"><?php echo $restaurant_labels['other']?></th>
                     </tr>
                     <tr>
                         <td class="place"><?php echo $result->place ?></td>

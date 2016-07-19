@@ -9,15 +9,15 @@ class Model_Comment extends \Orm\Model
 		'restaurant_id' => array(
             'form' => array('type' => 'hidden'),
         ),
-		'department' => array(
-            'data_type' => 'varchar',
-            'label' => '部門',
-            'validation' => array('required', 'max_length'=>array(50)),
-            'form' => array('type' => 'text'),
-        ),
 		'name' => array(
             'data_type' => 'varchar',
             'label' => '氏名',
+            'validation' => array('required', 'max_length'=>array(50)),
+            'form' => array('type' => 'text'),
+        ),
+		'department' => array(
+            'data_type' => 'varchar',
+            'label' => '所属部門',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
