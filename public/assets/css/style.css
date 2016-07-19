@@ -6,6 +6,11 @@ body {
     font-family: Raleway, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
+textarea {
+    height: 100px;
+}
+
+
 table {
     margin: 10px auto;
     border-collapse: collapse;
@@ -14,6 +19,7 @@ table {
 table, th, td {
     padding: 5px;
     /*border: 1px solid black;*/
+    vertical-align: center;
     font-size: 1.0rem;
 }
 
