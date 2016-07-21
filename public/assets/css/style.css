@@ -140,6 +140,11 @@ small {
     background-color: #ffecec;
 }
 
+.login_error {
+    font-weight: bold;
+    color: #ff0000;
+}
+
 #header {
     position: fixed;
     top: 0px;
@@ -172,6 +177,19 @@ small {
     font-size: 1.0rem;
     text-decoration: none;
     background: #bb0000;
+    color: white;
+}
+
+#header #admin-logo {
+    display: inline-block;
+}
+
+#header #admin-logo a {
+    padding: 15px 20px;
+    font-weight: bolder;
+    font-size: 1.0rem;
+    text-decoration: none;
+    background: #0000bb;
     color: white;
 }
 

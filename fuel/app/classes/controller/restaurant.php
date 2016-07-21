@@ -3,6 +3,40 @@
 class Controller_Restaurant extends Controller_Template
 {
 
+    public $is_admin = false;
+
+    public function before()
+    {
+        parent::before();
+        $this->template->is_admin = Auth::check();
+    }
+
+    public function action_login()
+    {
+        $data = array();
+        $data['error_msg'] = '';
+        $login_form = Fieldset::forge('login_form');
+        $login_form->add('username', 'username', array('type' => 'text', 'size' => 40));
+        $login_form->field('username')->add_rule('required');
+        $login_form->add('password', 'password', array('type' => 'password', 'size' => 40));
+        $login_form->field('password')->add_rule('required');
+        $login_form->add('submit', '', array('type' => 'submit', 'value' => 'login'));
+        if ($login_form->validation()->run()) {
+            $fields = $login_form->validated();
+            if (Auth::login($fields['username'], $fields['password'])) {
+                $this->is_admin = true;
+                Response::redirect('restaurant/list');
+            }
+            else {
+                $data['error_msg'] = 'username または password が間違っています';
+            }
+        }
+        $login_form->populate($login_form->validated());
+        $data['login_form'] = $login_form->build();
+        $this->template->title = 'ASAHICHELIN Login';
+        $this->template->content = View::forge('restaurant/login', $data, false);
+    }
+
 	public function action_index()
 	{
 		$this->template->title = 'ASAHICHELIN';

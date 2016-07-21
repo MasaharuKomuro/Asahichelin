@@ -10,6 +10,7 @@ return array(
         1 => '002_create_posts',
         2 => '003_create_restaurants',
         3 => '004_create_comments',
+        4 => '005_create_users',
       ),
     ),
     'module' => 

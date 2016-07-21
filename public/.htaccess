@@ -4,6 +4,9 @@
 <IfModule mod_rewrite.c>
 
 	RewriteEngine on
+    
+    RewriteCond %{SERVER_PORT} !^443$
+    RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
 
 	# NOTICE: If you get a 404 play with combinations of the following commented out lines
 	#AllowOverride All

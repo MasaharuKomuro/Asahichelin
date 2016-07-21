@@ -10,7 +10,12 @@
     <div id="container">
         <div id="header">
             <div id="nav">
-                <div id="logo"><a class="logo" href="/restaurant">ASAHICHELIN</a></div>
+                <?php if ($is_admin): ?>
+                    <div id="admin-logo"><a class="admin_logo" href="/restaurant">ASAHICHELIN 管理者画面</a></div>
+                    <div id="admin-logo"><a class="admin_logo" href="/restaurant/logout">Logout</a></div>
+                <?php else: ?>
+                    <div id="logo"><a class="logo" href="/restaurant">ASAHICHELIN</a></div>
+                <?php endif; ?>
                 <div id="nav-menu">
                     <ul>
                         <li><a id="register" href="/restaurant/form">登録</a></li>
