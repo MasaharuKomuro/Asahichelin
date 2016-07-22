@@ -33,9 +33,9 @@
                 <td class="department user-info"><small><?php echo $restaurant->department ?></small></td>
                 <td class="recommender user-info"><small><?php echo $restaurant->recommender ?></small></td>
                 <?php if ($restaurant->updated_at === null): ?>
-                    <td class="user-info"><small>更新日時: <?php echo date('Y-m-d H:i:s', $restaurant->created_at) ?></small></td>
+                    <td class="user-info"><small><?php echo date('Y年m月d日', $restaurant->created_at) ?></small></td>
                 <?php else: ?>
-                    <td class="user-info"><small>更新日時: <?php echo date('Y-m-d H:i:s', $restaurant->updated_at) ?></small></td>
+                    <td class="user-info"><small><?php echo date('Y年m月d日', $restaurant->updated_at) ?></small></td>
                 <?php endif; ?>
             </tr>
         </table>

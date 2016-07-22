@@ -10,9 +10,8 @@
     <div id="container">
         <div id="header">
             <div id="nav">
-                <?php if ($is_admin): ?>
+                <?php if (Auth::check()): ?>
                     <div id="admin-logo"><a class="admin_logo" href="/restaurant">ASAHICHELIN 管理者画面</a></div>
-                    <div id="admin-logo"><a class="admin_logo" href="/restaurant/logout">Logout</a></div>
                 <?php else: ?>
                     <div id="logo"><a class="logo" href="/restaurant">ASAHICHELIN</a></div>
                 <?php endif; ?>
@@ -23,6 +22,9 @@
                         <li><a id="search" href="/restaurant/search">検索</a></li>
                     </ul>
                 </div>
+                <?php if (Auth::check()): ?>
+                    <div id="logout"><a class="logout" href="/restaurant/logout">Logout</a></div>
+                <?php endif; ?>
             </div>
         </div>
         <div id="contents">

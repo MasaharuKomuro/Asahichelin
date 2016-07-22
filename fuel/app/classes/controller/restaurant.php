@@ -3,8 +3,6 @@
 class Controller_Restaurant extends Controller_Template
 {
 
-    public $is_admin = false;
-
     public function before()
     {
         parent::before();
@@ -24,7 +22,6 @@ class Controller_Restaurant extends Controller_Template
         if ($login_form->validation()->run()) {
             $fields = $login_form->validated();
             if (Auth::login($fields['username'], $fields['password'])) {
-                $this->is_admin = true;
                 Response::redirect('restaurant/list');
             }
             else {
@@ -35,6 +32,15 @@ class Controller_Restaurant extends Controller_Template
         $data['login_form'] = $login_form->build();
         $this->template->title = 'ASAHICHELIN Login';
         $this->template->content = View::forge('restaurant/login', $data, false);
+    }
+
+    public function action_logout()
+    {
+        if (Auth::check()) {
+            $auth = Auth::instance();
+            $auth->logout();
+        }
+        Response::redirect('restaurant');
     }
 
 	public function action_index()
@@ -151,6 +157,16 @@ class Controller_Restaurant extends Controller_Template
         $data['fieldset'] = $fieldset->build();
 		$this->template->title = 'ASAHICHELIN Edit Comment';
 		$this->template->content = View::forge('restaurant/edit_comment', $data, false);
+    }
+
+    public function action_delete($id = 0)
+    {
+        $restaurant = Model_Restaurant::find($id);
+        if (!isset($restaurant) || !Auth::check()) {
+            Response::redirect('restaurant/list');
+        }
+        $restaurant->delete();
+        Response::redirect('restaurant/list');
     }
 
     public function action_form()

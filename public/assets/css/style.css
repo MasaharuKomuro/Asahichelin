@@ -193,6 +193,20 @@ small {
     color: white;
 }
 
+#header #logout {
+    display: inline-block;
+    float: right;
+}
+
+#header #logout a {
+    padding: 15px 20px;
+    font-weight: bolder;
+    font-size: 1.0rem;
+    text-decoration: none;
+    background: #0000bb;
+    color: white;
+}
+
 
 #header #nav-menu {
     display: inline-block;
@@ -229,7 +243,7 @@ small {
     padding: 76px 0 100px 0;
     margin: 0px auto;
     /*background: #eeeeee;*/
-    outline: solid 1px #666666;
+    /*outline: solid 1px #666666;*/
 }
 
 #contents #top-image {
@@ -333,6 +347,21 @@ small {
     opacity: 0.9;
 }
 
+.button-delete {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 0px 5px 0;
+    border-radius: 4px;
+    background-color: #bb4444;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+.button-delete:hover {
+    opacity: 0.9;
+}
 
 #footer {
     width: 1200px;

@@ -36,16 +36,19 @@
                         <td class="department user-info"><small><?php echo $result->department ?></small></td>
                         <td class="recommender user-info"><small><?php echo $result->recommender ?></small></td>
                         <?php if ($result->updated_at === null): ?>
-                            <td class="user-info"><small>更新日時: <?php echo date('Y-m-d H:i:s', $result->created_at) ?></small></td>
+                            <td class="user-info"><small><?php echo date('Y年m月d日', $result->created_at) ?></small></td>
                         <?php else: ?>
-                            <td class="user-info"><small>更新日時: <?php echo date('Y-m-d H:i:s', $result->updated_at) ?></small></td>
+                            <td class="user-info"><small><?php echo date('Y年m月d日', $result->updated_at) ?></small></td>
                         <?php endif; ?>
                     </tr>
                 </table>
             </div>
         </div>
         <div class="restaurant-buttons">
-        <a class="button-edit" href="/restaurant/edit/<?php echo $result->id ?>">編集</a>
+            <?php if (Auth::check()): ?>
+                <a class="button-delete" href="/restaurant/delete/<?php echo $result->id ?>">削除</a>
+            <?php endif; ?>
+            <a class="button-edit" href="/restaurant/edit/<?php echo $result->id ?>">編集</a>
             <a class="button-detail" href="/restaurant/detail/<?php echo $result->id ?>">コメント</a>
         </div>
         <hr>
