@@ -1,16 +1,10 @@
 <?php
 
-class Model_User extends \Orm\Model_Soft
+class Model_Test2 extends \Orm\Model_Soft
 {
 	protected static $_properties = array(
 		'id',
-		'username',
-		'password',
-		'group',
-		'email',
-		'last_login',
-		'login_hash',
-		'profile_fields',
+		'test',
 		'deleted_at',
 		'created_at',
 		'updated_at',
@@ -31,6 +25,6 @@ class Model_User extends \Orm\Model_Soft
 		'mysql_timestamp' => false,
 	);
 
-	protected static $_table_name = 'users';
+	protected static $_table_name = 'test2s';
 
 }

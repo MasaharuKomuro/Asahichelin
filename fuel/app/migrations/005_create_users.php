@@ -15,6 +15,7 @@ class Create_users
 			'last_login' => array('constraint' => 25, 'type' => 'varchar'),
 			'login_hash' => array('constraint' => 255, 'type' => 'varchar'),
 			'profile_fields' => array('type' => 'text'),
+			'deleted_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 

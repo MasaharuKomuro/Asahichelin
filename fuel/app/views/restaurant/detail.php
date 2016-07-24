@@ -22,7 +22,7 @@
                 <?php endif; ?>
                 <td class="phone"><?php echo $restaurant->phone ?></td>
                 <td class="cost"><?php echo $restaurant->cost ?>円</td>
-                <td class="link"><a href="<?php echo $restaurant->link ?>"><?php echo $restaurant->link ?></a></td>
+                <td class="link"><a href="<?php echo $restaurant->link ?>" target="_blank"><?php echo $restaurant->link ?></a></td>
                 <td class="other"><?php echo $restaurant->other ?></td>
             </tr>
         </table>
@@ -45,6 +45,9 @@
     <?php echo $comment->body ?><br><br>
     <?php echo $comment->department ?>
     <?php echo $comment->name ?><br><br>
+    <?php if (Auth::check()): ?>
+        <a class="button-delete delete-confirmation" href="/restaurant/delete_comment/<?php echo $restaurant->id.'/'.$comment->id ?>" onclick="return confirm('削除してよろしいですか？');"><small>削除</small></a>
+    <?php endif; ?>
     <a class="button-edit" href="/restaurant/edit_comment/<?php echo $restaurant->id.'/'.$comment->id ?>"><small>編集</small></a>
     <hr>
 <?php endforeach; ?>

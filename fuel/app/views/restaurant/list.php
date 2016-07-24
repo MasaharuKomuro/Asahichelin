@@ -25,7 +25,7 @@
                         <?php endif; ?>
                         <td class="phone"><?php echo $result->phone ?></td>
                         <td class="cost"><?php echo $result->cost ?>円</td>
-                        <td class="link"><a href="<?php echo $result->link ?>"><?php echo $result->link ?></a></td>
+                        <td class="link"><a href="<?php echo $result->link ?>" target="_blank"><?php echo $result->link ?></a></td>
                         <td class="other"><?php echo $result->other ?></td>
                     </tr>
                 </table>
@@ -46,7 +46,7 @@
         </div>
         <div class="restaurant-buttons">
             <?php if (Auth::check()): ?>
-                <a class="button-delete" href="/restaurant/delete/<?php echo $result->id ?>">削除</a>
+                <a class="button-delete delete-confirmation" href="/restaurant/delete/<?php echo $result->id ?>" onclick="return confirm('削除してよろしいですか？');">削除</a>
             <?php endif; ?>
             <a class="button-edit" href="/restaurant/edit/<?php echo $result->id ?>">編集</a>
             <a class="button-detail" href="/restaurant/detail/<?php echo $result->id ?>">コメント</a>

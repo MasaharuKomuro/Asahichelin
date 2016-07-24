@@ -169,6 +169,17 @@ class Controller_Restaurant extends Controller_Template
         Response::redirect('restaurant/list');
     }
 
+    public function action_delete_comment($r_id = 0, $c_id = 0)
+    {
+        $restaurant = Model_Restaurant::find($r_id);
+        $comment = Model_Comment::find($c_id);
+        if (!isset($restaurant) || !isset($comment) || !Auth::check()) {
+            Response::redirect('restaurant/list');
+        }
+        $comment->delete();
+        Response::redirect('restaurant/detail/'.$r_id);
+    }
+
     public function action_form()
     {
         $fieldset = Fieldset::forge()->add_model('Model_Restaurant');

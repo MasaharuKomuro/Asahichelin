@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
     <?php echo Asset::css('reset.css')?>
     <?php echo Asset::css('style.css')?>
+    <?php echo Asset::js('jquery-3.1.0.min.js')?>
+    <?php echo Asset::js('script.js')?>
     <title><?php echo $title; ?></title>
 </head>
 <body>
@@ -23,7 +25,7 @@
                     </ul>
                 </div>
                 <?php if (Auth::check()): ?>
-                    <div id="logout"><a class="logout" href="/restaurant/logout">Logout</a></div>
+                    <div id="logout"><a class="logout logout-confirmation" href="/restaurant/logout"  onclick="return confirm('ログアウトしてよろしいですか？');">Logout</a></div>
                 <?php endif; ?>
             </div>
         </div>

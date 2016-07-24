@@ -1,9 +1,9 @@
 <?php
 
-class Model_Restaurant extends \Orm\Model
+class Model_Restaurant extends \Orm\Model_Soft
 {
-	protected static $_properties = array(
-		'id' => array(
+    protected static $_properties = array(
+        'id' => array(
             'form' => array('type' => 'hidden'),
         ),
         'place' => array(
@@ -18,13 +18,13 @@ class Model_Restaurant extends \Orm\Model
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
-		'name' => array(
+        'name' => array(
             'data_type' => 'varchar',
             'label' => '店名',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
-		'kind' => array(
+        'kind' => array(
             'data_type' => 'varchar',
             'label' => 'ジャンル',
             'validation' => array('required'),
@@ -50,49 +50,51 @@ class Model_Restaurant extends \Orm\Model
                                                                     'その他' => 'その他',
                                                                    )
                             ),
-
         ),
-		'private_room' => array(
+        'private_room' => array(
             'data_type' => 'bool',
             'label' => '個室',
             'validation' => array('required'),
             'form' => array('type' => 'select', 'options' => array('true' => 'あり', 'false' => 'なし')),
         ),
-		'phone' => array(
+        'phone' => array(
             'data_type' => 'varchar',
             'label' => '電話番号',
             'validation' => array('required', 'max_length'=>array(20)),
             'form' => array('type' => 'text'),
         ),
-		'cost' => array(
+        'cost' => array(
             'data_type' => 'int',
             'label' => '一人当たり予算',
             'validation' => array('required', 'valid_string'=>array(array('numeric'))),
             'form' => array('type' => 'text'),
         ),
-		'recommender' => array(
+        'recommender' => array(
             'data_type' => 'varchar',
             'label' => '推薦者',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
-		'department' => array(
+        'department' => array(
             'data_type' => 'varchar',
             'label' => '所属部門',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
-		'link' => array(
+        'link' => array(
             'data_type' => 'varchar',
             'label' => 'サイトURL',
             'validation' => array('required', 'valid_url', 'max_length'=>array(100)),
             'form' => array('type' => 'text'),
         ),
-		'other' => array(
+        'other' => array(
             'data_type' => 'text',
             'label' => '備考',
             'validation' => array(),
             'form' => array('type' => 'textarea'),
+        ),
+		'deleted_at' => array(
+            'form' => array('type' => 'hidden'),
         ),
         'created_at' => array(
             'form' => array('type' => 'hidden'),
@@ -100,20 +102,21 @@ class Model_Restaurant extends \Orm\Model
         'updated_at' => array(
             'form' => array('type' => 'hidden'),
         ),
+    );
+    protected static $_observers = array(
+        'Orm\Observer_CreatedAt' => array(
+            'events' => array('before_insert'),
+            'mysql_timestamp' => false,
+        ),
+        'Orm\Observer_UpdatedAt' => array(
+            'events' => array('before_update'),
+            'mysql_timestamp' => false,
+        ),
+    );
+	protected static $_soft_delete = array(
+		'mysql_timestamp' => false,
 	);
-
-	protected static $_observers = array(
-		'Orm\Observer_CreatedAt' => array(
-			'events' => array('before_insert'),
-			'mysql_timestamp' => false,
-		),
-		'Orm\Observer_UpdatedAt' => array(
-			'events' => array('before_update'),
-			'mysql_timestamp' => false,
-		),
-	);
-
-	protected static $_table_name = 'restaurants';
+    protected static $_table_name = 'restaurants';
     protected static $_has_many = array(
         'comments' => array(
             'model_to' => 'Model_Comment',
@@ -123,7 +126,6 @@ class Model_Restaurant extends \Orm\Model
             'cascade_delete' => true,
         ),
     );
-
     static public function get_labels() {
         $labels = array();
         foreach (self::$_properties as $property => $arr) {

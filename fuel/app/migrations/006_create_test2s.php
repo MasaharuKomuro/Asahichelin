@@ -2,16 +2,13 @@
 
 namespace Fuel\Migrations;
 
-class Create_comments
+class Create_test2s
 {
 	public function up()
 	{
-		\DBUtil::create_table('comments', array(
+		\DBUtil::create_table('test2s', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
-			'restaurant_id' => array('constraint' => 11, 'type' => 'int'),
-			'department' => array('constraint' => 50, 'type' => 'varchar'),
-			'name' => array('constraint' => 50, 'type' => 'varchar'),
-			'body' => array('type' => 'text'),
+			'test' => array('constraint' => 11, 'type' => 'int'),
 			'deleted_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
@@ -21,6 +18,6 @@ class Create_comments
 
 	public function down()
 	{
-		\DBUtil::drop_table('comments');
+		\DBUtil::drop_table('test2s');
 	}
 }

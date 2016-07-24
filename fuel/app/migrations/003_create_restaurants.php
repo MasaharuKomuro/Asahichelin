@@ -17,8 +17,9 @@ class Create_restaurants
 			'cost' => array('constraint' => 11, 'type' => 'int'),
 			'department' => array('constraint' => 50, 'type' => 'varchar'),
 			'recommender' => array('constraint' => 50, 'type' => 'varchar'),
-			'link' => array('constraint' => 100, 'type' => 'varchar'),
+			'link' => array('constraint' => 255, 'type' => 'varchar'),
 			'other' => array('type' => 'text'),
+			'deleted_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 

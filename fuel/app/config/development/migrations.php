@@ -11,6 +11,7 @@ return array(
         2 => '003_create_restaurants',
         3 => '004_create_comments',
         4 => '005_create_users',
+        5 => '006_create_test2s',
       ),
     ),
     'module' => 

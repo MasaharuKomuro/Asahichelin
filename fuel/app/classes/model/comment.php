@@ -1,51 +1,55 @@
 <?php
 
-class Model_Comment extends \Orm\Model
+class Model_Comment extends \Orm\Model_Soft
 {
-	protected static $_properties = array(
-		'id' => array(
+
+    protected static $_properties = array(
+        'id' => array(
             'form' => array('type' => 'hidden'),
         ),
-		'restaurant_id' => array(
+        'restaurant_id' => array(
             'form' => array('type' => 'hidden'),
         ),
-		'name' => array(
+        'name' => array(
             'data_type' => 'varchar',
             'label' => '氏名',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
-		'department' => array(
+        'department' => array(
             'data_type' => 'varchar',
             'label' => '所属部門',
             'validation' => array('required', 'max_length'=>array(50)),
             'form' => array('type' => 'text'),
         ),
-		'body' => array(
+        'body' => array(
             'data_type' => 'text',
             'label' => 'コメント欄',
             'validation' => array('required'),
             'form' => array('type' => 'textarea'),
         ),
-		'created_at' => array(
+		'deleted_at', array(
             'form' => array('type' => 'hidden'),
         ),
-		'updated_at' => array(
+        'created_at' => array(
             'form' => array('type' => 'hidden'),
         ),
+        'updated_at' => array(
+            'form' => array('type' => 'hidden'),
+        ),
+    );
+    protected static $_observers = array(
+        'Orm\Observer_CreatedAt' => array(
+            'events' => array('before_insert'),
+            'mysql_timestamp' => false,
+        ),
+        'Orm\Observer_UpdatedAt' => array(
+            'events' => array('before_update'),
+            'mysql_timestamp' => false,
+        ),
+    );
+	protected static $_soft_delete = array(
+		'mysql_timestamp' => false,
 	);
-
-	protected static $_observers = array(
-		'Orm\Observer_CreatedAt' => array(
-			'events' => array('before_insert'),
-			'mysql_timestamp' => false,
-		),
-		'Orm\Observer_UpdatedAt' => array(
-			'events' => array('before_update'),
-			'mysql_timestamp' => false,
-		),
-	);
-
-	protected static $_table_name = 'comments';
-
+    protected static $_table_name = 'comments';
 }
