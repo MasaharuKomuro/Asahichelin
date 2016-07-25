@@ -28,7 +28,7 @@ class Model_Comment extends \Orm\Model_Soft
             'validation' => array('required'),
             'form' => array('type' => 'textarea'),
         ),
-		'deleted_at', array(
+		'deleted_at' => array(
             'form' => array('type' => 'hidden'),
         ),
         'created_at' => array(
