@@ -28,7 +28,7 @@ class Controller_Restaurant extends Controller_Template
                 $data['error_msg'] = 'username または password が間違っています';
             }
         }
-        $login_form->populate($login_form->validated());
+        $login_form->repopulate();
         $data['login_form'] = $login_form->build();
         $this->template->title = 'ASAHICHELIN Login';
         $this->template->content = View::forge('restaurant/login', $data, false);
@@ -51,9 +51,9 @@ class Controller_Restaurant extends Controller_Template
 
 	public function action_list()
 	{
-        $data = array();
-        $data['results'] = Model_Restaurant::find('all');
-        $data['restaurant_labels'] = Model_Restaurant::get_labels();
+    $data = array();
+    $data['results'] = Model_Restaurant::find('all');
+    $data['restaurant_labels'] = Model_Restaurant::get_labels();
 		$this->template->title = 'ASAHICHELIN List';
 		$this->template->content = View::forge('restaurant/list', $data);
 	}
@@ -82,7 +82,7 @@ class Controller_Restaurant extends Controller_Template
             }
         }
         else {
-            $fieldset->populate($fieldset->validated());
+            $fieldset->repopulate();
         }
         $data['fieldset'] = $fieldset->build();
         $data['comments'] = $restaurant->comments;
@@ -93,15 +93,18 @@ class Controller_Restaurant extends Controller_Template
     public function action_edit($id = 0)
     {
         $data = array();
-        $restaurant = Model_Restaurant::find($id);
-        $data['restaurant_labels'] = Model_Restaurant::get_labels();
-        if (!isset($restaurant)) {
-            Response::redirect('restaurant/list');
-        }
         $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
         $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '更新'), array(), 'other');
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
         $fieldset->field('cost')->set_description('円');
+        $restaurant = Model_Restaurant::find($id);
+        if (!isset($restaurant)) {
+            Response::redirect('restaurant/list');
+        }
+        if (!isset($fieldset->input('id'))) {
+          $fieldset->populate($restaurant);
+        }
+        $data['restaurant_labels'] = Model_Restaurant::get_labels();
         if ($fieldset->validation()->run()) {
             $fields = $fieldset->validated();
             $restaurant->place = $fields['place'];
@@ -119,8 +122,7 @@ class Controller_Restaurant extends Controller_Template
                 Response::redirect('restaurant/list');
             }
         }
-        $fieldset->populate($restaurant);
-        $fieldset->populate($fieldset->validated());
+        $fieldset->repopulate();
         #$true_or_false = $fieldset->validation()->run();
 		$this->template->title = 'ASAHICHELIN Edit';
 		#$this->template->title = $true_or_false;
@@ -220,10 +222,21 @@ class Controller_Restaurant extends Controller_Template
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
         $fieldset->field('cost')->set_description('円');
         if ($fieldset->validation()->run()) {
-            Response::redirect('restaurant/list');
+          $searchConditions = $fieldset->validated();
+          $columns = Model_Restaurant::get_columns();
+          $whereArray = array();
+          foreach ($columns as $column) {
+            if (isset($searchConditions[$column])) {
+              $whereArray[$column] = $searchConditions[$column];
+            }
+          }
+          $data = array();
+          $data['results'] = Model_Restaurant::find('all', array('where' => $whereArray));
+		      $this->template->title = 'ASAHICHELIN Search';
+		      $this->template->content = View::forge('restaurant/search', $data);
         }
         else {
-            $fieldset->populate($fieldset->validated());
+            $fieldset->repopulate();
         }
         #$true_or_false = $fieldset->validation()->run();
 		$this->template->title = 'ASAHICHELIN Search';
