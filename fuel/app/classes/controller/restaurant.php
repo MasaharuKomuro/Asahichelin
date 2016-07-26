@@ -233,7 +233,7 @@ class Controller_Restaurant extends Controller_Template
           $data = array();
           $data['results'] = Model_Restaurant::find('all', array('where' => $whereArray));
 		      $this->template->title = 'ASAHICHELIN Search';
-		      $this->template->content = View::forge('restaurant/search', $data);
+		      $this->template->content = View::forge('restaurant/list', $data);
         }
         else {
             $fieldset->repopulate();
