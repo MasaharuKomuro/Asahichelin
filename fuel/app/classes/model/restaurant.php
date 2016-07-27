@@ -135,5 +135,12 @@ class Model_Restaurant extends \Orm\Model_Soft
         }
         return $labels;
     }
+    static public function get_columns() {
+        $columns = array();
+        foreach (self::$_properties as $property => $arr) {
+            $columns[] = $property;
+        }
+        return $columns;
+    }
 
 }
