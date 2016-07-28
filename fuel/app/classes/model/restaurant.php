@@ -142,5 +142,8 @@ class Model_Restaurant extends \Orm\Model_Soft
         }
         return $columns;
     }
+    static public function get_properties() {
+        return self::$_properties;
+    }
 
 }

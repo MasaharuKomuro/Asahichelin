@@ -218,8 +218,24 @@ class Controller_Restaurant extends Controller_Template
 
 	public function action_search()
 	{
-        $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
-        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '検索'), array(), 'other');
+        //$fieldset = Fieldset::forge()->add_model('Model_Restaurant');
+        $restaurant_labels = Model_Restaurant::get_labels();
+        $restaurant_properties = Model_Restaurant::get_properties();
+        $fieldset = Fieldset::forge();
+        $fieldset->add('place', $restaurant_properties['place']['label'], $restaurant_properties['place']['form']);
+        $fieldset->add('station', $restaurant_properties['station']['label'], $restaurant_properties['station']['form']);
+        $fieldset->add('name', $restaurant_properties['name']['label'], $restaurant_properties['name']['form']);
+        $restaurant_properties['kind']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['kind']['form']['options']);
+        $fieldset->add('kind', $restaurant_properties['kind']['label'], $restaurant_properties['kind']['form']);
+        $restaurant_properties['private_room']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['private_room']['form']['options']);
+        $fieldset->add('private_room', $restaurant_properties['private_room']['label'], $restaurant_properties['private_room']['form']);
+        $fieldset->add('phone', $restaurant_properties['phone']['label'], $restaurant_properties['phone']['form']);
+        $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form'])->add_rule('valid_string', array('numeric'));
+        $fieldset->add('recommender', $restaurant_properties['recommender']['label'], $restaurant_properties['recommender']['form']);
+        $fieldset->add('department', $restaurant_properties['department']['label'], $restaurant_properties['department']['form']);
+        $fieldset->add('link', $restaurant_properties['link']['label'], $restaurant_properties['link']['form']);
+        $fieldset->add('other', $restaurant_properties['other']['label'], $restaurant_properties['other']['form']);
+        $fieldset->add('submit', '', array('type' => 'submit', 'value' => '検索'), array(), 'other');
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
         $fieldset->field('cost')->set_description('円');
         //if ($fieldset->validation()->run()) {
@@ -231,10 +247,15 @@ class Controller_Restaurant extends Controller_Template
             foreach ($columns as $column) {
                 #if (array_key_exists($column, $searchConditions)) {
                 if (array_key_exists($column, $searchConditions) && $searchConditions[$column] != '') {
+                    //if ($column == 'private_room') {
+                    //    $whereArray[$column] = (bool)$searchConditions[$column];
+                    //} else {
+                    //    $whereArray[$column] = $searchConditions[$column];
+                    //}
                     if ($column == 'private_room') {
-                        $whereArray[$column] = (bool)$searchConditions[$column];
+                        $whereArray[] = array($column, (bool)$searchConditions[$column]);
                     } else {
-                        $whereArray[$column] = $searchConditions[$column];
+                        $whereArray[] = array($column, 'like', "%{$searchConditions[$column]}%");
                     }
                 }
             }
@@ -242,7 +263,7 @@ class Controller_Restaurant extends Controller_Template
             //var_dump($whereArray);
             $data = array();
             $data['results'] = Model_Restaurant::find('all', array('where' => $whereArray));
-            $data['restaurant_labels'] = Model_Restaurant::get_labels();
+            $data['restaurant_labels'] = $restaurant_labels;
 		    $this->template->title = 'ASAHICHELIN Search';
 		    $this->template->content = View::forge('restaurant/list', $data);
         }
