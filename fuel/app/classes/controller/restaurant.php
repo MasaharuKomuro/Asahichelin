@@ -9,6 +9,12 @@ class Controller_Restaurant extends Controller_Template
         $this->template->is_admin = Auth::check();
     }
 
+	public function action_index()
+	{
+		$this->template->title = 'ASAHICHELIN';
+		$this->template->content = View::forge('restaurant/index');
+	}
+
     public function action_login()
     {
         $data = array();
@@ -43,11 +49,17 @@ class Controller_Restaurant extends Controller_Template
         Response::redirect('restaurant');
     }
 
-	public function action_index()
-	{
-		$this->template->title = 'ASAHICHELIN';
-		$this->template->content = View::forge('restaurant/index');
-	}
+    public function action_contact()
+    {
+		$this->template->title = 'ASAHICHELIN Contact';
+		$this->template->content = View::forge('restaurant/contact');
+    }
+
+    public function action_about()
+    {
+		$this->template->title = 'ASAHICHELIN About';
+		$this->template->content = View::forge('restaurant/about');
+    }
 
 	public function action_list()
 	{

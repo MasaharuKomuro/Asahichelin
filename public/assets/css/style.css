@@ -232,7 +232,24 @@ small {
 
 #header #nav-menu a:hover {
     background: #333333;
+    text-size: 1.0rem;
+    color: white;
+}
+
+#contact {
+    display: inline-block;
+    float: right;
+}
+
+#contact a {
+    padding: 15px 20px;
+    font-size: 1.0rem;
     text-decoration: none;
+    color: black;
+}
+
+#contact a:hover {
+    background: #333333;
     text-size: 1.0rem;
     color: white;
 }
@@ -252,7 +269,7 @@ small {
     margin: 30px auto;
     background: url('../img/AsahichelinEach.002.jpg');
     border-radius: 1rem;
-    background-position: -170px -130px;
+    background-position: -170px -200px;
 }
 
 #contents #restaurant_list {
@@ -272,8 +289,12 @@ small {
     height:60px;
 }
 
+.button-about {
+    padding: 300px 0 0 0;
+}
+
 .buttons {
-    padding: 370px 0 0 0;
+    padding: 10px 0 0 0;
 }
 
 #button-register {
@@ -307,6 +328,40 @@ small {
 }
 
 #button-search:hover {
+    opacity: 0.9;
+}
+
+#button-about {
+    display: inline-block;
+    width: 200px;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 4px;
+    background-color: #dd5500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+#button-about:hover {
+    opacity: 0.9;
+}
+
+#button-list {
+    display: inline-block;
+    width: 100px;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 4px;
+    background-color: #dd5500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+}
+
+#button-list:hover {
     opacity: 0.9;
 }
 

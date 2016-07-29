@@ -27,6 +27,7 @@
                 <?php if (Auth::check()): ?>
                     <div id="logout"><a class="logout logout-confirmation" href="/restaurant/logout"  onclick="return confirm('ログアウトしてよろしいですか？');">Logout</a></div>
                 <?php endif; ?>
+                <div id="contact"><a class="contact" href="/restaurant/contact">お問い合わせ</a></div>
             </div>
         </div>
         <div id="contents">
