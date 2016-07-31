@@ -176,14 +176,7 @@
 	margin: 0;
 	height: 47px;
 }
-/*
-#register_index{
-	margin-right: 10px;
-}
-#list_index{
-	margin-left: 10px;
-}
-*/
+
 #button-register{
 }
 #button-search{
@@ -195,10 +188,24 @@
 /*
 *登録ページ用
 */
-#from_place{
+.form_label{
+	width: 30%;
+	min-width: 140px;
+}
+[id^="form_"]{
+	width: 70%;
+	min-width: 200px;
+}
+#form_submit{
+	height: 50px;
+	font-size: 30px;
+}
+.a{
 	background-color: red;
 }
-
+.b{
+	color: white;
+}
 
 /*
 *アニメーションの設定

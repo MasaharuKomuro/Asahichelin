@@ -64,10 +64,28 @@ $(function(){
     /*
     *登録ページ用
     */
+    /*
     $(document).ready(function(){
-    	//$("#form_place").css({"backgroundColor": "red"});
-    	
+    	var $window_size = $(window).width();
+  		if($window_size < $sm){
+  			$("#form_submit").css("width", "100%");
+  		}else{
+  			$("#form_submit").css("width", "70%");
+  		}
+    	//$("#form_submit").addClass("index_button btn paper paper-curl-right");
+
     });
+    $(window).on('resize', function(){
+    	var $window_size = $(window).width();
+  		if($window_size < $sm){
+    		$("#form_submit").parent().css("width", "100%");
+    		$("#form_submit").parent().prev().hide();
+    	}else{
+    		$("#form_submit").css("width", "70%");
+    		$("#form_submit").parent().prev().show();
+    	}
+    });
+*/
     
 
 	
