@@ -237,7 +237,8 @@ class Controller_Restaurant extends Controller_Template
         $fieldset->add('place', $restaurant_properties['place']['label'], $restaurant_properties['place']['form']);
         $fieldset->add('station', $restaurant_properties['station']['label'], $restaurant_properties['station']['form']);
         $fieldset->add('name', $restaurant_properties['name']['label'], $restaurant_properties['name']['form']);
-        $restaurant_properties['kind']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['kind']['form']['options']);
+        //$restaurant_properties['kind']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['kind']['form']['options']);
+        $restaurant_properties['kind']['form']['type'] = 'checkbox';
         $fieldset->add('kind', $restaurant_properties['kind']['label'], $restaurant_properties['kind']['form']);
         $restaurant_properties['private_room']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['private_room']['form']['options']);
         $fieldset->add('private_room', $restaurant_properties['private_room']['label'], $restaurant_properties['private_room']['form']);
@@ -255,7 +256,7 @@ class Controller_Restaurant extends Controller_Template
         if (count($fieldset->validated()) > 0) {
             $searchConditions = $fieldset->validated();
             $columns = Model_Restaurant::get_columns();
-            $whereArray = array();
+            //$whereArray = array();
             foreach ($columns as $column) {
                 #if (array_key_exists($column, $searchConditions)) {
                 if (array_key_exists($column, $searchConditions) && $searchConditions[$column] != '') {
@@ -266,8 +267,25 @@ class Controller_Restaurant extends Controller_Template
                     //}
                     if ($column == 'private_room') {
                         $whereArray[] = array($column, (bool)$searchConditions[$column]);
+                        //$query->where($column, (bool)$searchConditions[$column]);
+                    } elseif ($column == 'kind') {
+                        $prevArray = array();
+                        $kindArray = array();
+                        foreach ($searchConditions[$column] as $key => $kind) {
+                            if (count($prevArray) === 1) {
+                                $kindArray['or'] = array($column, 'like', "%{$kind}%");
+                                $prevArray = $kindArray['or'];
+                            } else {
+                                $prevArray['or'] = array($column, 'like', "%{$kind}%"); // if prevArray['or'] is the pointer of value (array) in $kindArray, it works.
+                                $prevArray = $prevArray['or'];
+                            }
+                            //$whereArray[] = array($column, 'like', "%{$kind}%");
+                            //$query->or_where($column, 'like', "%{$kind}%");
+                        }
+                        $whereArray[] = $kindArray;
                     } else {
                         $whereArray[] = array($column, 'like', "%{$searchConditions[$column]}%");
+                        //$query->where($column, 'like', "%{$searchConditions[$column]}%");
                     }
                 }
             }
@@ -275,6 +293,7 @@ class Controller_Restaurant extends Controller_Template
             //var_dump($whereArray);
             $data = array();
             $data['results'] = Model_Restaurant::find('all', array('where' => $whereArray));
+            //$data['results'] = $query->execute();
             $data['restaurant_labels'] = $restaurant_labels;
 		    $this->template->title = 'ASAHICHELIN Search';
 		    $this->template->content = View::forge('restaurant/list', $data);
