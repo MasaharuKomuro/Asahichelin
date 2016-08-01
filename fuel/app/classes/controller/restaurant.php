@@ -3,6 +3,8 @@
 class Controller_Restaurant extends Controller_Template
 {
 
+    private $per_page = 20;
+
     public function before()
     {
         parent::before();
@@ -64,10 +66,28 @@ class Controller_Restaurant extends Controller_Template
 	public function action_list()
 	{
     $data = array();
-    $data['results'] = Model_Restaurant::find('all');
+    $count = Model_Restaurant::count();
+    $config = array(
+                  'pagenation_url' => 'restaurant/list',
+                  'uri_segment' => 3,
+                  'num_links' => 4,
+                  'per_page' => $this->per_page,
+                  'total_items' => $count,
+                  'show_first' => true,
+                  'show_last' => true,
+              );
+    $pagenation = Pagination::forge('article_pagination', $config);
+    $data['results'] = Model_Restaurant::query()
+                           ->order_by('cost', 'asc')
+                           ->limit($this->per_page)
+                           ->offset($pagenation->offset)
+                           ->get();
     $data['restaurant_labels'] = Model_Restaurant::get_labels();
 		$this->template->title = 'ASAHICHELIN List';
 		$this->template->content = View::forge('restaurant/list', $data);
+		$this->template->content->set_safe('countLabel', '店舗数');
+		$this->template->content->set_safe('count', $count);
+		$this->template->content->set_safe('pagenation', $pagenation);
 	}
 
 	public function action_detail($id = 0)
@@ -303,8 +323,12 @@ class Controller_Restaurant extends Controller_Template
                                                              )
             );
             $data['restaurant_labels'] = $restaurant_labels;
+            $count = count($data['results']);
 		    $this->template->title = 'ASAHICHELIN Search';
 		    $this->template->content = View::forge('restaurant/list', $data);
+		    $this->template->content->set_safe('countLabel', '検索結果');
+		    $this->template->content->set_safe('count', $count);
+		    $this->template->content->set_safe('pagenation', '');
         }
         else {
             $fieldset->repopulate();

@@ -1,4 +1,6 @@
 <div id="restaurant_list">
+    <h1 style="font-size: 1.2rem;margin: 20px; text-align: left"><?=$countLabel?> <?=$count?>件</h1>
+    <hr>
     <?php foreach ($results as $result): ?>
         <div class="restaurant-container">
         <div class="restaurant-name"><?php echo $result->name ?></div>
@@ -53,5 +55,6 @@
         </div>
         <hr>
     <?php endforeach; ?>
+    <?php echo $pagenation?>
 </div>
 <input type="button" onclick="location.href='/restaurant/search'" value="検索画面へ">
