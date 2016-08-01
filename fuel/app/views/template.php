@@ -38,8 +38,6 @@
                 <div class="top_menu top_menu_button register col-md-2 col-lg-2 col-sm-4 col-xs-4"><a id="register" href="/restaurant/form">登録</a></div>
                 <div class="top_menu top_menu_button list col-lg-2 col-md-2 col-sm-4 col-xs-4"><a id="list" href="/restaurant/list">一覧</a></div>
                 <div class="top_menu top_menu_button search col-lg-2 col-md-2 col-sm-4 col-xs-4"><a id="search" href="/restaurant/search">検索</a></div>
-                <div class="top_menu top_menu_button search col-lg-2 col-md-2 col-sm-4 col-xs-4"><a id="search" href="/restaurant/contact">お問い合わせ</a></div>
-                
             <?php if (Auth::check()): ?>
                 <div class="top_menu_back col-lg-1 col-md-1 visible-md visible-lg"></div>
                 <div id="logout" class="col-md-2  visible-md visible-lg">
@@ -71,8 +69,12 @@
                 <hr class="foot_pertision">
                 -->
                 <div class="col-lg-12 col-md-12">
-                    <a>Ueki All rights reserved.</a><br>
-                    <a>Designed by Komuro</a>
+                    <a>Ueki All rights reserved &amp; Designed by Komuro</a><br>
+                    <br>
+                    <div>
+                        <a id="about_us" href="/restaurant/about">ASAHICHELINとは？</a>
+                        <a id="search" href="/restaurant/contact">お問い合わせ</a>
+                    </div>
                 </div>
             </div>
         </div>
