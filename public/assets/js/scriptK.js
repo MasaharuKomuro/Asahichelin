@@ -1,12 +1,16 @@
 
 $(function(){
+
+/*
+    *************************  for 全ページ  *************************
+    */
 	//画面サイズ
 	var $sm = 768;
 
 
-	/*
-	* Topページ用のスクリプト
-	*/
+/*
+    *************************  for TOPページ  *************************
+*/
 	$(document).ready(function(){
 		var $window_size = $(window).width();
   		if($window_size < $sm){
@@ -15,8 +19,10 @@ $(function(){
     		$("#index_button_box").css("top", "0px");
     		$("#index_button_box div").css({"backgroundColor": "DarkRed"});
     		$(".paper").css({"box-shadow": "0 0 0 Maroon", "border": "1px solid Maroon"});
+            $("#front_image").css("border-radius", "0px");
     	}else{
     		$(".padding-none").css("padding", "0 15px"); 
+            $("#front_image").css("border-radius", "10px");
     	}
 	});
 
@@ -32,12 +38,14 @@ $(function(){
     		$("#index_button_box").css("top", "0");
     		$("#index_button_box div").css({"backgroundColor": "DarkRed"});
     		$(".paper").css({"box-shadow": "0 0 0 Maroon", "border": "1px solid Maroon"});
+            $("#front_image").css("border-radius", "0px");
     	}else{
     		//PC
     		$(".padding-none").css("padding", "0 15px");
     		$("#index_button_box").css("top", "-150px");
 			$("#index_button_box div").css({"backgroundColor": "transparent"});
     		$(".paper").css({"box-shadow": "0 0 7px IndianRed", "border": "0px solid IndianRed"});
+            $("#front_image").css("border-radius", "10px");
     	}
 	});
 
@@ -49,44 +57,81 @@ $(function(){
     	$('.logo').effect('bounce','',1000 );
     });
     $('.register').mouseenter(function(){
-    	$('#register').effect('bounce','',1000 );
+    	$('#register_button').effect('bounce','',1000 );
     });
     $('.list').mouseenter(function(){
-    	$('#list').effect('bounce','',1000 );
+    	$('#list_button').effect('bounce','',1000 );
     });
     $('.search').mouseenter(function(){
-    	$('#search').effect('bounce','',1000 );
+    	$('#search_button').effect('bounce','',1000 );
     });
     $('#logout').mouseenter(function(){
     	$('.logout').effect('bounce','',1000 );
     });
     
     /*
-    *登録ページ用
+    *************************  for 登録ページ  *************************
     */
-    /*
     $(document).ready(function(){
+        $("#form_submit").addClass("btn paper paper-curl-right");
+        $("#form_submit_sm").addClass("btn paper paper-curl-right");
     	var $window_size = $(window).width();
   		if($window_size < $sm){
-  			$("#form_submit").css("width", "100%");
+            $("#form_submit").hide();
+            $("#form_submit_sm").show();
+            $("[id^=form_]").css("width", "100%");
+            $("#form_cost").css("width", "80%");
+            $(".form_padding").css("display", "none");
+            $("#form_submit").parent().parent().children().css("padding", "0px");
   		}else{
-  			$("#form_submit").css("width", "70%");
+            $("#form_submit").show();
+            $("#form_submit_sm").hide();
+            $("[id^=form_]").css("width", "60%");
+            $(".form_padding").css("display", "inline");
+            $("#form_submit").parent().parent().children().css("padding", "8px");
   		}
-    	//$("#form_submit").addClass("index_button btn paper paper-curl-right");
-
+        $("#form_submit_sm").css("border", "2px solid Maroon");
     });
+    
     $(window).on('resize', function(){
     	var $window_size = $(window).width();
   		if($window_size < $sm){
-    		$("#form_submit").parent().css("width", "100%");
-    		$("#form_submit").parent().prev().hide();
+            $("[id^=form_]").css("width", "100%");
+            $("#form_cost").css("width", "80%");
+            $(".form_padding").css("display", "none");
+    		$("#form_submit").hide();
+            $("#form_submit_sm").show();
+            $("#form_submit").parent().parent().children().css("padding", "0px");
+            console.log($("#form_submit").parent().parent().html());
+            $("#form_submit_sm").css("border", "2px solid Maroon");
     	}else{
-    		$("#form_submit").css("width", "70%");
-    		$("#form_submit").parent().prev().show();
+            $("[id^=form_]").css("width", "60%");
+            $(".form_padding").css("display", "inline");
+    		$("#form_submit").show();
+            $("#form_submit_sm").hide();
+            $("#form_submit").parent().parent().children().css("padding", "8px");
     	}
     });
-*/
-    
+
+    /*
+    *************************  for 検索ページ  *************************
+    */
+    $(document).ready(function(){
+        var $window_size = $(window).width();
+        if($window_size < $sm){
+            $(".main_contents").css("min-height", "350px");
+        }else{
+            $(".main_contents").css("min-height", "500px");
+        }
+    });
+    $(window).on('resize', function(){
+        var $window_size = $(window).width();
+        if($window_size < $sm){
+            $(".main_contents").css("min-height", "350px");
+        }else{
+            $(".main_contents").css("min-height", "500px");
+        }
+    });
 
 	
 

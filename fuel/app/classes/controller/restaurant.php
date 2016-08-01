@@ -220,7 +220,7 @@ class Controller_Restaurant extends Controller_Template
         $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
         $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '登録'), array(), 'other');
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
-        $fieldset->field('cost')->set_description('円');
+        $fieldset->field('cost')->set_description('<a class="group_label">円</a>');
         if ($fieldset->validation()->run()) {
             $fields = $fieldset->validated();
             $restaurant = Model_Restaurant::forge();
@@ -279,7 +279,7 @@ class Controller_Restaurant extends Controller_Template
                                                                 $costSearchIntervals[5][0].'円〜'.$costSearchIntervals[5][1].'円', // 9000円〜12000円
                                                                 $costSearchIntervals[6][0].'円〜',                                 // 12000円〜
                                                             );
-        $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form']);
+        $fieldset->add('cost1', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form']);
         $fieldset->add('other', $restaurant_properties['other']['label'], $restaurant_properties['other']['form']);
         $fieldset->add('orderby', '表示順', array('type' => 'select', 
                                                   'options' => array(

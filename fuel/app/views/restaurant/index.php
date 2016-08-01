@@ -13,15 +13,14 @@
     <div class="row" id="index_button_box">
     	<div class="col-md-3 col-sm-2 visible-sm visible-md visible-lg"></div>
     	<div class="padding-none col-md-3 col-sm-4 col-xs-6">
-    		<a id="register_index" href="/restaurant/about" class="index_button btn paper paper-curl-right">ASAHICHELINとは？</a>
     		<a id="register_index" href="/restaurant/form" class="index_button btn paper paper-curl-right">登録</a>
     	</div>
     	<div class="padding-none col-md-3 col-sm-4 col-xs-6">
-    		<a id="list_index" href="/restaurant/list" class="index_button btn paper paper-curl-right">一覧</a>
     		<a id="list_index" href="/restaurant/search" class="index_button btn paper paper-curl-right">検索</a>
     	</div>
     	<div class="col-md-3 col-sm-2 visible-sm visible-md visible-lg"></div>
     </div>
+    
 <!--
     <p id="p1"></p>
     <p id="p2"></p>      

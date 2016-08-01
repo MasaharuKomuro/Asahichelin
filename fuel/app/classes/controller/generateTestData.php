@@ -12,7 +12,7 @@ class Controller_GenerateTestData extends Controller_Template
             $restaurant->place = '場所'.$i;
             $restaurant->station = '駅'.$i;
             $restaurant->name = 'レストラン名'.$i;
-            $restaurant->kind = $kinds[$i % 19];
+            $restaurant->kind = $kinds[$i % 14];
             $restaurant->private_room = (bool) ($i % 2);
             $restaurant->phone = sprintf("03-1234-%'.04d", $i);
             $restaurant->cost = sprintf("%d00", $i);

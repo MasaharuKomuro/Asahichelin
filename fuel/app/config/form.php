@@ -32,11 +32,18 @@ return array(
 					<table class=\"table table-striped\">
 						{fields}
 					</table>
+					<input type=\"submit\" value=\"登録\" id=\"form_submit_sm\" name=\"submit\">
 				{close}
 			</div>
-		</div>\n",
+		</div>",
 	'fieldset_template'          => "\n\t\t<tr><td colspan=\"2\">{open}<table>\n{fields}</table></td></tr>\n\t\t{close}\n",
-	'field_template'             => "\t\t<tr>\n\t\t\t<td class=form_label \"{error_class}\">{label}{required}</td>\n\t\t\t<td class=\"{error_class}\">{field} <span>{description}</span> {error_msg}</td>\n\t\t</tr>\n",
+	'field_template'             => "
+	<tr>
+		<td class=\"form_label\" {error_class}>
+			{label}{required}
+		</td>
+		<td class=\"{error_class}\"><a class=\"form_padding\" style=\"visibility: hidden;\">hoge</a>
+		{field} <span>{description}</span> {error_msg}</td>\n\t\t</tr>\n",
 	'multi_field_template'       => "\t\t<tr>\n\t\t\t<td class=\"{error_class}\">{group_label}{required}</td>\n\t\t\t<td class=\"{error_class}\">{fields}\n\t\t\t\t{field} {label}<br />\n{fields}<span>{description}</span>\t\t\t{error_msg}\n\t\t\t</td>\n\t\t</tr>\n",
 	'error_template'             => '<span>{error_msg}</span>',
 	'group_label'	             => '<span>{label}</span>',
