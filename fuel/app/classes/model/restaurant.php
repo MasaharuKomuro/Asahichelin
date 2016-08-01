@@ -60,7 +60,7 @@ class Model_Restaurant extends \Orm\Model_Soft
         'phone' => array(
             'data_type' => 'varchar',
             'label' => '電話番号',
-            'validation' => array('required', 'max_length'=>array(20)),
+            'validation' => array('max_length'=>array(20)),
             'form' => array('type' => 'text'),
         ),
         'cost' => array(
@@ -84,7 +84,7 @@ class Model_Restaurant extends \Orm\Model_Soft
         'link' => array(
             'data_type' => 'varchar',
             'label' => 'サイトURL',
-            'validation' => array('required', 'valid_url', 'max_length'=>array(100)),
+            'validation' => array('valid_url', 'max_length'=>array(100)),
             'form' => array('type' => 'text'),
         ),
         'other' => array(
