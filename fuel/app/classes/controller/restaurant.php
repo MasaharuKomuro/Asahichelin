@@ -267,15 +267,21 @@ class Controller_Restaurant extends Controller_Template
         $fieldset->add('department', $restaurant_properties['department']['label'], $restaurant_properties['department']['form']);
         $fieldset->add('link', $restaurant_properties['link']['label'], $restaurant_properties['link']['form']);
         $fieldset->add('other', $restaurant_properties['other']['label'], $restaurant_properties['other']['form']);
+        $fieldset->add('orderby', '表示順', array('type' => 'select', 
+                                                  'options' => array(
+                                                                   'asc' => '価格の低い順',
+                                                                   'desc' => '価格の高い順',
+                                                               ),
+                                         )
+                      );
         $fieldset->add('submit', '', array('type' => 'submit', 'value' => '検索'), array(), 'other');
-        $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
-        $fieldset->field('cost')->set_description('円');
         //if ($fieldset->validation()->run()) {
         $fieldset->validation()->run();
         if (count($fieldset->validated()) > 0) {
             $searchConditions = $fieldset->validated();
             $columns = Model_Restaurant::get_columns();
             $whereArray = array();
+            $orderBy = array();
             foreach ($columns as $column) {
                 #if (array_key_exists($column, $searchConditions)) {
                 if (array_key_exists($column, $searchConditions) && $searchConditions[$column] != '') {
@@ -294,10 +300,14 @@ class Controller_Restaurant extends Controller_Template
                     }
                 }
             }
-            //var_dump($searchConditions);
-            //var_dump($whereArray);
             $data = array();
-            $data['results'] = Model_Restaurant::find('all', array('where' => $whereArray));
+            $data['results'] = Model_Restaurant::find('all', array(
+                                                                 'where' => $whereArray,
+                                                                 'order_by' => array(
+                                                                                   'cost' => $searchConditions['orderby'],
+                                                                               ),
+                                                             )
+            );
             $data['restaurant_labels'] = $restaurant_labels;
 		    $this->template->title = 'ASAHICHELIN Search';
 		    $this->template->content = View::forge('restaurant/list', $data);

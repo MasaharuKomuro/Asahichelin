@@ -54,4 +54,4 @@
         <hr>
     <?php endforeach; ?>
 </div>
-<input type="button" onclick="location.href='/'" value="トップへ">
+<input type="button" onclick="location.href='/restaurant/search'" value="検索画面へ">
