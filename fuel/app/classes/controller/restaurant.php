@@ -236,13 +236,10 @@ class Controller_Restaurant extends Controller_Template
         $fieldset = Fieldset::forge();
         $fieldset->add('place', $restaurant_properties['place']['label'], $restaurant_properties['place']['form']);
         $fieldset->add('station', $restaurant_properties['station']['label'], $restaurant_properties['station']['form']);
-        $fieldset->add('name', $restaurant_properties['name']['label'], $restaurant_properties['name']['form']);
         $restaurant_properties['kind']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['kind']['form']['options']);
         $fieldset->add('kind', $restaurant_properties['kind']['label'], $restaurant_properties['kind']['form']);
         $restaurant_properties['private_room']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['private_room']['form']['options']);
         $fieldset->add('private_room', $restaurant_properties['private_room']['label'], $restaurant_properties['private_room']['form']);
-        $fieldset->add('phone', $restaurant_properties['phone']['label'], $restaurant_properties['phone']['form']);
-        //$fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form'])->add_rule('valid_string', array('numeric'));
         $restaurant_properties['cost']['form']['type'] = 'select';
         $costSearchIntervals = array(
                                     array(0, 1000000), //指定無し
@@ -263,9 +260,6 @@ class Controller_Restaurant extends Controller_Template
                                                                 $costSearchIntervals[6][0].'円〜',                                 // 12000円〜
                                                             );
         $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form']);
-        $fieldset->add('recommender', $restaurant_properties['recommender']['label'], $restaurant_properties['recommender']['form']);
-        $fieldset->add('department', $restaurant_properties['department']['label'], $restaurant_properties['department']['form']);
-        $fieldset->add('link', $restaurant_properties['link']['label'], $restaurant_properties['link']['form']);
         $fieldset->add('other', $restaurant_properties['other']['label'], $restaurant_properties['other']['form']);
         $fieldset->add('orderby', '表示順', array('type' => 'select', 
                                                   'options' => array(
