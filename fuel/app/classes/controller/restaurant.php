@@ -242,7 +242,27 @@ class Controller_Restaurant extends Controller_Template
         $restaurant_properties['private_room']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['private_room']['form']['options']);
         $fieldset->add('private_room', $restaurant_properties['private_room']['label'], $restaurant_properties['private_room']['form']);
         $fieldset->add('phone', $restaurant_properties['phone']['label'], $restaurant_properties['phone']['form']);
-        $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form'])->add_rule('valid_string', array('numeric'));
+        //$fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form'])->add_rule('valid_string', array('numeric'));
+        $restaurant_properties['cost']['form']['type'] = 'select';
+        $costSearchIntervals = array(
+                                    array(0, 1000000), //指定無し
+                                    array(0, 3000),
+                                    array(3000, 5000),
+                                    array(5000, 7000),
+                                    array(7000, 9000),
+                                    array(9000, 12000),
+                                    array(12000, 1000000),
+                                );
+        $restaurant_properties['cost']['form']['options'] = array(
+                                                                '指定なし',                                                        // 0円〜1000000円
+                                                                '〜'.$costSearchIntervals[1][1].'円',                              // 〜3000円
+                                                                $costSearchIntervals[2][0].'円〜'.$costSearchIntervals[2][1].'円', // 3000円〜5000円
+                                                                $costSearchIntervals[3][0].'円〜'.$costSearchIntervals[3][1].'円', // 5000円〜7000円
+                                                                $costSearchIntervals[4][0].'円〜'.$costSearchIntervals[4][1].'円', // 7000円〜9000円
+                                                                $costSearchIntervals[5][0].'円〜'.$costSearchIntervals[5][1].'円', // 9000円〜12000円
+                                                                $costSearchIntervals[6][0].'円〜',                                 // 12000円〜
+                                                            );
+        $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form']);
         $fieldset->add('recommender', $restaurant_properties['recommender']['label'], $restaurant_properties['recommender']['form']);
         $fieldset->add('department', $restaurant_properties['department']['label'], $restaurant_properties['department']['form']);
         $fieldset->add('link', $restaurant_properties['link']['label'], $restaurant_properties['link']['form']);
@@ -266,6 +286,9 @@ class Controller_Restaurant extends Controller_Template
                     //}
                     if ($column == 'private_room') {
                         $whereArray[] = array($column, (bool)$searchConditions[$column]);
+                    } elseif ($column == 'cost'){
+                        $whereArray[] = array($column, '>=', $costSearchIntervals[$searchConditions[$column]][0]);
+                        $whereArray[] = array($column, '<=', $costSearchIntervals[$searchConditions[$column]][1]);
                     } else {
                         $whereArray[] = array($column, 'like', "%{$searchConditions[$column]}%");
                     }
