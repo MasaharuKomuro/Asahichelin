@@ -121,7 +121,7 @@
     display:flex;
     -webkit-flex-wrap:nowrap;/*--- safari（PC）用 ---*/
     flex-wrap:nowrap;
-    min-height: 400px;
+    min-height: 500px;
 }
 .overflow-fix{
 	/*overflow: hidden;*/
@@ -136,6 +136,9 @@
 	padding: 0;
 }
 
+#footer_document{
+	padding-top: 10px;
+}
 #search, #about_us{
 	text-decoration: underline;
 }
@@ -158,7 +161,7 @@
 
 
 /*
-*for Index
+*************************  for Index  *************************
 */
 #top_pad{
 	height: 40px;
@@ -180,6 +183,7 @@
     /*border-radius: 10px;*/
     animation: fadeIn 2s ease 0s 1 normal;
     -webkit-animation: fadeIn 2s ease 0s 1 normal;
+    border-radius: 10px;
 }
 
 #index_button_box{
@@ -208,25 +212,50 @@
 }
 
 /*
-*登録ページ用
+*************************  for 登録ページ  *************************
 */
 .form_label{
 	width: 30%;
 	min-width: 140px;
+	text-align: right;
+}
+.form_padding{
+	display: block;
+	width: 10%;
+	margin: 0;
+	float: left;
 }
 [id^="form_"]{
-	width: 70%;
+	width: 60%;
 	min-width: 200px;
+	float: left;
 }
-#form_submit{
+#form_submit, #form_submit_sm{
 	height: 50px;
 	font-size: 30px;
+}
+#form_submit_sm{
+	width: 100%;
+	box-shadow: 0 0 0 red;
+	border-radius: 0px;
+}
+.group_label{
+	float: left;
+	padding-left: 10px;
+}
+.group_label, .group_label:hover{
+	color: blue;
+	text-decoration: none;
+	font-size: 18px;
 }
 .a{
 	background-color: red;
 }
 .b{
 	color: white;
+}
+.table{
+	margin: 0;
 }
 
 /*
