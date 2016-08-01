@@ -1,4 +1,6 @@
 <div id="restaurant_list">
+    <h1 style="font-size: 1.2rem;margin: 20px; text-align: left"><?=$countLabel?> <?=$count?>件</h1>
+    <hr>
     <?php foreach ($results as $result): ?>
         <div class="restaurant-container">
         <div class="restaurant-name"><?php echo $result->name ?></div>
@@ -45,6 +47,7 @@
             </div>
         </div>
         <div class="restaurant-buttons">
+            <span style="color: #999999">コメント <?php echo count($result->comments)?>件&nbsp;&nbsp;&nbsp;</span>
             <?php if (Auth::check()): ?>
                 <a class="button-delete delete-confirmation" href="/restaurant/delete/<?php echo $result->id ?>" onclick="return confirm('削除してよろしいですか？');">削除</a>
             <?php endif; ?>
@@ -53,5 +56,6 @@
         </div>
         <hr>
     <?php endforeach; ?>
+    <?php echo $pagenation?>
 </div>
-<input type="button" onclick="location.href='/'" value="トップへ">
+<input type="button" onclick="location.href='/restaurant/search'" value="検索画面へ">

@@ -30,12 +30,6 @@
                     <a class="admin_logo logo bounce" href="/restaurant">ASAHICHELIN</a><br>
                     <a class="admin_logo logo bounce">管理者画面</a>
                 </div>
-<<<<<<< HEAD
-                <?php if (Auth::check()): ?>
-                    <div id="logout"><a class="logout logout-confirmation" href="/restaurant/logout"  onclick="return confirm('ログアウトしてよろしいですか？');">Logout</a></div>
-                <?php endif; ?>
-                <div id="contact"><a class="contact" href="/restaurant/contact">お問い合わせ</a></div>
-=======
             <?php else: ?>
                 <div id="logo" class="col-md-2 col-lg-2 col-xs-12">
                     <a class="logo bounce" href="/restaurant">ASAHICHELIN</a>
@@ -44,6 +38,7 @@
                 <div class="top_menu top_menu_button register col-md-2 col-lg-2 col-sm-4 col-xs-4"><a id="register" href="/restaurant/form">登録</a></div>
                 <div class="top_menu top_menu_button list col-lg-2 col-md-2 col-sm-4 col-xs-4"><a id="list" href="/restaurant/list">一覧</a></div>
                 <div class="top_menu top_menu_button search col-lg-2 col-md-2 col-sm-4 col-xs-4"><a id="search" href="/restaurant/search">検索</a></div>
+                <div class="top_menu top_menu_button search col-lg-2 col-md-2 col-sm-4 col-xs-4"><a id="search" href="/restaurant/contact">お問い合わせ</a></div>
                 
             <?php if (Auth::check()): ?>
                 <div class="top_menu_back col-lg-1 col-md-1 visible-md visible-lg"></div>
@@ -53,7 +48,6 @@
             <?php else: ?>    
                 <div class="top_menu_back col-lg-3 col-md-3 visible-md visible-lg"></div>
             <?php endif; ?>
->>>>>>> 2e50a420c830c7e61c89256cf82916a3a1c85147
             </div>
         </div>
     </div>
