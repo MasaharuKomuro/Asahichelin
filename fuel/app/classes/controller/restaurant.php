@@ -3,6 +3,8 @@
 class Controller_Restaurant extends Controller_Template
 {
 
+    private $per_page = 20;
+
     public function before()
     {
         parent::before();
@@ -64,10 +66,28 @@ class Controller_Restaurant extends Controller_Template
 	public function action_list()
 	{
     $data = array();
-    $data['results'] = Model_Restaurant::find('all');
+    $count = Model_Restaurant::count();
+    $config = array(
+                  'pagenation_url' => 'restaurant/list',
+                  'uri_segment' => 3,
+                  'num_links' => 4,
+                  'per_page' => $this->per_page,
+                  'total_items' => $count,
+                  'show_first' => true,
+                  'show_last' => true,
+              );
+    $pagenation = Pagination::forge('article_pagination', $config);
+    $data['results'] = Model_Restaurant::query()
+                           ->order_by('cost', 'asc')
+                           ->limit($this->per_page)
+                           ->offset($pagenation->offset)
+                           ->get();
     $data['restaurant_labels'] = Model_Restaurant::get_labels();
 		$this->template->title = 'ASAHICHELIN List';
 		$this->template->content = View::forge('restaurant/list', $data);
+		$this->template->content->set_safe('countLabel', '店舗数');
+		$this->template->content->set_safe('count', $count);
+		$this->template->content->set_safe('pagenation', $pagenation);
 	}
 
 	public function action_detail($id = 0)
@@ -236,26 +256,46 @@ class Controller_Restaurant extends Controller_Template
         $fieldset = Fieldset::forge();
         $fieldset->add('place', $restaurant_properties['place']['label'], $restaurant_properties['place']['form']);
         $fieldset->add('station', $restaurant_properties['station']['label'], $restaurant_properties['station']['form']);
-        $fieldset->add('name', $restaurant_properties['name']['label'], $restaurant_properties['name']['form']);
         $restaurant_properties['kind']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['kind']['form']['options']);
         $fieldset->add('kind', $restaurant_properties['kind']['label'], $restaurant_properties['kind']['form']);
         $restaurant_properties['private_room']['form']['options'] = array_merge(array('' => '指定なし'), $restaurant_properties['private_room']['form']['options']);
         $fieldset->add('private_room', $restaurant_properties['private_room']['label'], $restaurant_properties['private_room']['form']);
-        $fieldset->add('phone', $restaurant_properties['phone']['label'], $restaurant_properties['phone']['form']);
-        $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form'])->add_rule('valid_string', array('numeric'));
-        $fieldset->add('recommender', $restaurant_properties['recommender']['label'], $restaurant_properties['recommender']['form']);
-        $fieldset->add('department', $restaurant_properties['department']['label'], $restaurant_properties['department']['form']);
-        $fieldset->add('link', $restaurant_properties['link']['label'], $restaurant_properties['link']['form']);
+        $restaurant_properties['cost']['form']['type'] = 'select';
+        $costSearchIntervals = array(
+                                    array(0, 1000000), //指定無し
+                                    array(0, 3000),
+                                    array(3000, 5000),
+                                    array(5000, 7000),
+                                    array(7000, 9000),
+                                    array(9000, 12000),
+                                    array(12000, 1000000),
+                                );
+        $restaurant_properties['cost']['form']['options'] = array(
+                                                                '指定なし',                                                        // 0円〜1000000円
+                                                                '〜'.$costSearchIntervals[1][1].'円',                              // 〜3000円
+                                                                $costSearchIntervals[2][0].'円〜'.$costSearchIntervals[2][1].'円', // 3000円〜5000円
+                                                                $costSearchIntervals[3][0].'円〜'.$costSearchIntervals[3][1].'円', // 5000円〜7000円
+                                                                $costSearchIntervals[4][0].'円〜'.$costSearchIntervals[4][1].'円', // 7000円〜9000円
+                                                                $costSearchIntervals[5][0].'円〜'.$costSearchIntervals[5][1].'円', // 9000円〜12000円
+                                                                $costSearchIntervals[6][0].'円〜',                                 // 12000円〜
+                                                            );
+        $fieldset->add('cost', $restaurant_properties['cost']['label'], $restaurant_properties['cost']['form']);
         $fieldset->add('other', $restaurant_properties['other']['label'], $restaurant_properties['other']['form']);
+        $fieldset->add('orderby', '表示順', array('type' => 'select', 
+                                                  'options' => array(
+                                                                   'asc' => '価格の低い順',
+                                                                   'desc' => '価格の高い順',
+                                                               ),
+                                         )
+                      );
         $fieldset->add('submit', '', array('type' => 'submit', 'value' => '検索'), array(), 'other');
-        $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
-        $fieldset->field('cost')->set_description('円');
         //if ($fieldset->validation()->run()) {
         $fieldset->validation()->run();
         if (count($fieldset->validated()) > 0) {
             $searchConditions = $fieldset->validated();
             $columns = Model_Restaurant::get_columns();
             $whereArray = array();
+            $orderBy = array();
             foreach ($columns as $column) {
                 #if (array_key_exists($column, $searchConditions)) {
                 if (array_key_exists($column, $searchConditions) && $searchConditions[$column] != '') {
@@ -266,18 +306,29 @@ class Controller_Restaurant extends Controller_Template
                     //}
                     if ($column == 'private_room') {
                         $whereArray[] = array($column, (bool)$searchConditions[$column]);
+                    } elseif ($column == 'cost'){
+                        $whereArray[] = array($column, '>=', $costSearchIntervals[$searchConditions[$column]][0]);
+                        $whereArray[] = array($column, '<=', $costSearchIntervals[$searchConditions[$column]][1]);
                     } else {
                         $whereArray[] = array($column, 'like', "%{$searchConditions[$column]}%");
                     }
                 }
             }
-            //var_dump($searchConditions);
-            //var_dump($whereArray);
             $data = array();
-            $data['results'] = Model_Restaurant::find('all', array('where' => $whereArray));
+            $data['results'] = Model_Restaurant::find('all', array(
+                                                                 'where' => $whereArray,
+                                                                 'order_by' => array(
+                                                                                   'cost' => $searchConditions['orderby'],
+                                                                               ),
+                                                             )
+            );
             $data['restaurant_labels'] = $restaurant_labels;
+            $count = count($data['results']);
 		    $this->template->title = 'ASAHICHELIN Search';
 		    $this->template->content = View::forge('restaurant/list', $data);
+		    $this->template->content->set_safe('countLabel', '検索結果');
+		    $this->template->content->set_safe('count', $count);
+		    $this->template->content->set_safe('pagenation', '');
         }
         else {
             $fieldset->repopulate();

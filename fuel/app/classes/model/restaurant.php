@@ -33,7 +33,7 @@ class Model_Restaurant extends \Orm\Model_Soft
                                                                     '洋食・西洋料理' => '洋食・西洋料理',
                                                                     '中華料理' => '中華料理',
                                                                     'アジア・エスニック' => 'アジア・エスニック',
-                                                                    'カレー' => 'カレー',
+                                                                    //'カレー' => 'カレー',
                                                                     '焼肉・ホルモン' => '焼肉・ホルモン',
                                                                     '鍋' => '鍋',
                                                                     '居酒屋・ダイニングバー' => '居酒屋・ダイニングバー',
@@ -41,11 +41,11 @@ class Model_Restaurant extends \Orm\Model_Soft
                                                                     'ラーメン' => 'ラーメン',
                                                                     'カフェ' => 'カフェ',
                                                                     'バー' => 'バー',
-                                                                    'パブ' => 'パブ',
+                                                                    //'パブ' => 'パブ',
                                                                     'ラウンジ' => 'ラウンジ',
-                                                                    'ワインバー' => 'ワインバー',
-                                                                    'ビアガーデン' => 'ビアガーデン',
-                                                                    'ビアバー' => 'ビアバー',
+                                                                    //'ワインバー' => 'ワインバー',
+                                                                    //'ビアガーデン' => 'ビアガーデン',
+                                                                    //'ビアバー' => 'ビアバー',
                                                                     '旅館' => '旅館',
                                                                     'その他' => 'その他',
                                                                    )
@@ -60,7 +60,7 @@ class Model_Restaurant extends \Orm\Model_Soft
         'phone' => array(
             'data_type' => 'varchar',
             'label' => '電話番号',
-            'validation' => array('required', 'max_length'=>array(20)),
+            'validation' => array('max_length'=>array(20)),
             'form' => array('type' => 'text'),
         ),
         'cost' => array(
@@ -84,7 +84,7 @@ class Model_Restaurant extends \Orm\Model_Soft
         'link' => array(
             'data_type' => 'varchar',
             'label' => 'サイトURL',
-            'validation' => array('required', 'valid_url', 'max_length'=>array(100)),
+            'validation' => array('valid_url', 'max_length'=>array(100)),
             'form' => array('type' => 'text'),
         ),
         'other' => array(
