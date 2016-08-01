@@ -1,0 +1,227 @@
+
+/*
+*for Template
+*/
+.design{ /*ななめ縞*/
+    background-color: DarkRed;
+
+    background-image:
+    -webkit-linear-gradient(left top, 
+    rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 25%, transparent 25%, transparent 50%,
+    rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 75%, transparent 75%, transparent 100%), 
+    -webkit-linear-gradient(right top, 
+    rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 25%, transparent 25%, transparent 50%,
+    rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 75%, transparent 75%, transparent 100%);
+
+    background-image:
+    -moz-linear-gradient(left top, 
+    rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 25%, transparent 25%, transparent 50%,
+    rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, transparent 75%, transparent 100%), 
+    -moz-linear-gradient(right top, 
+    rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 25%, transparent 25%, transparent 50%,
+    rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, transparent 75%, transparent 100%);
+
+    background-image:
+    linear-gradient(left top, 
+    rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 25%, transparent 25%, transparent 50%,
+    rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, transparent 75%, transparent 100%), 
+    linear-gradient(right top, 
+    rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 25%, transparent 25%, transparent 50%,
+    rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, transparent 75%, transparent 100%);
+
+    background-size: 8px 8px;
+
+
+}
+#logo, #admin-logo, #logout{
+	height: 60px;
+	background-color: FireBrick;
+	opacity: 0.94;
+	text-align: center;
+}
+.top_menu, .top_menu_back, .logo, .top_menu_button a, .logout{
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	padding: 0;
+	display: block;
+	font-size: 18px;
+}
+
+.logo, .logout{
+	height: 25px;
+	color: white;
+	text-decoration: none;
+}
+.logo:hover, .logout:hover{
+	text-decoration: none;
+	color: white;
+}
+#admin-logo{
+	padding: 10px;
+}
+#admin-logo a{
+	line-height: 20px;
+	height: 20px;
+	display: inline;
+}
+.logout, .logout:hover, .logout:visited{
+	color: LightSalmon;
+	text-decoration: none;
+}
+
+.top_menu_button{
+	font-size: 20px;
+	background-color: black;
+	opacity: 0.6;
+}
+.top_menu_button a{
+	height: 25px;
+	text-decoration: none;
+}
+.top_menu_back{
+	/*background-color: SlateGray;*/
+}
+.top_menu a{
+	color: white;	
+}
+ 
+.top_menu_button:hover{
+	background-color: DarkRed;
+	opacity: 0.8;
+}
+.side_back{
+	background-color: gray;
+	opacity: 0.3;
+	padding: 0;
+}
+.container{
+	padding: 0;
+	margin: 0;
+	max-width: 100%;
+}
+#footer{
+	height: 100px;
+	text-align: center;
+	line-height: 25px;
+}
+#footer a{
+	display: block;
+	margin: 10px 15px;
+	color: white;
+	text-decoration: none;
+	display: inline;
+	margin: 8px 0;
+}
+.foot_pertision{
+	margin: 0;
+}
+.main_contents{
+	display: -webkit-flex;/*--- safari（PC）用 ---*/
+    display:flex;
+    -webkit-flex-wrap:nowrap;/*--- safari（PC）用 ---*/
+    flex-wrap:nowrap;
+}
+.overflow-fix{
+	/*overflow: hidden;*/
+}
+
+.row{
+	width: 100%;
+	margin: 0;
+}
+.row div{
+	margin: 0;
+	padding: 0;
+}
+
+/*
+*for Index
+*/
+#top_pad{
+	height: 40px;
+}
+#front_image_box{
+	overflow: hidden;
+	/*position:relative;
+    */
+    width: 100%;
+	height: 600px;
+	padding: 0;
+}
+#front_image{
+	position:absolute;
+    left: 50%;
+    width: 800px;
+    height: 600px;
+    margin-left: -400px;
+    /*border-radius: 10px;*/
+    animation: fadeIn 2s ease 0s 1 normal;
+    -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+
+#index_button_box{
+	position: relative;
+	top: -150px;/******/
+	height: 0;
+	line-height: 100px;
+	animation: fadeIn 2s ease 0s 1 normal;
+    -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+.padding-none{
+	height: 47px;
+	padding: 0 15px;
+}
+.index_button{
+	margin: 0;
+	height: 47px;
+}
+
+#button-register{
+}
+#button-search{
+}
+#add_front_image{
+
+}
+
+/*
+*登録ページ用
+*/
+.form_label{
+	width: 30%;
+	min-width: 140px;
+}
+[id^="form_"]{
+	width: 70%;
+	min-width: 200px;
+}
+#form_submit{
+	height: 50px;
+	font-size: 30px;
+}
+.a{
+	background-color: red;
+}
+.b{
+	color: white;
+}
+
+/*
+*アニメーションの設定
+*/
+
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+/*
+*テスト用
+*/
+

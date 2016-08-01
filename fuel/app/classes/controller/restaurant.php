@@ -299,11 +299,6 @@ class Controller_Restaurant extends Controller_Template
             foreach ($columns as $column) {
                 #if (array_key_exists($column, $searchConditions)) {
                 if (array_key_exists($column, $searchConditions) && $searchConditions[$column] != '') {
-                    //if ($column == 'private_room') {
-                    //    $whereArray[$column] = (bool)$searchConditions[$column];
-                    //} else {
-                    //    $whereArray[$column] = $searchConditions[$column];
-                    //}
                     if ($column == 'private_room') {
                         $whereArray[] = array($column, (bool)$searchConditions[$column]);
                     } elseif ($column == 'cost'){
