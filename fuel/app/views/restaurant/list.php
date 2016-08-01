@@ -47,6 +47,7 @@
             </div>
         </div>
         <div class="restaurant-buttons">
+            <span style="color: #999999">コメント <?php echo count($result->comments)?>件&nbsp;&nbsp;&nbsp;</span>
             <?php if (Auth::check()): ?>
                 <a class="button-delete delete-confirmation" href="/restaurant/delete/<?php echo $result->id ?>" onclick="return confirm('削除してよろしいですか？');">削除</a>
             <?php endif; ?>
