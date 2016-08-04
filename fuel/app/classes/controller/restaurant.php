@@ -218,7 +218,7 @@ class Controller_Restaurant extends Controller_Template
     public function action_form()
     {
         $fieldset = Fieldset::forge()->add_model('Model_Restaurant');
-        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '登録'), array(), 'other');
+        $fieldset->add_after('submit', '', array('type' => 'submit', 'value' => '登録', 'class' => 'submit_button'), array(), 'other');
         $fieldset->field('cost')->set_error_message('valid_string', '数値のみで入力してください。');
         $fieldset->field('cost')->set_description('<a class="group_label">円</a>');
         if ($fieldset->validation()->run()) {

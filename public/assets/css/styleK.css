@@ -229,15 +229,18 @@
 	width: 60%;
 	min-width: 200px;
 	float: left;
+	margin-left: 10%;
 }
 #form_submit, #form_submit_sm{
 	height: 50px;
 	font-size: 30px;
+	padding-left: 0 !important;
 }
 #form_submit_sm{
 	width: 100%;
 	box-shadow: 0 0 0 red;
 	border-radius: 0px;
+	margin: 0;
 }
 .group_label{
 	float: left;
@@ -257,6 +260,79 @@
 .table{
 	margin: 0;
 }
+
+
+
+/*
+*************************  for 一覧ページ  *************************
+*/
+.panel{
+	margin: 0 10px;
+	box-shadow: 2px 2px 2px Maroon;
+}
+.panel-heading-list{
+	text-align: left;
+	font-size: 22px;
+	background-color: DarkRed !important;
+	color: white !important;
+	padding: 3px 10px !important;
+}
+.panel-body{
+	background-color: LightGoldenrodYellow;
+	/*border: 1px solid DarkRed;*/
+}
+.list_content_main{
+	text-align: left;
+	font-size: 16px;
+	text-decoration: none;
+	background-color: 	WhiteSmoke;
+}
+.list_content_main a{
+	color: black;
+	text-decoration: none;
+}
+.list_favicon{
+	width: 24px;
+	height: 24px;
+}
+.left-info div{
+	text-align: center;
+	box-shadow: 0 0 5px white inset;
+	color: white;
+	padding: 4px;
+	height: 30px;
+}
+.kind{
+	background-color: LightCoral;
+}
+.cost{
+	background-color: LightGreen;
+}
+.public_room{
+	background-color: Gainsboro;
+}
+.private_room{
+	background-color: SkyBlue;
+}
+.right-info{
+	padding: 4px;
+}
+.right-info p{
+	height: 30px;
+	margin: 0 5px;
+	padding: 2px 0;
+}
+.url, .url:hover{
+	color: blue !important;
+}
+.url:hover{
+	text-decoration: underline;
+}
+.consideration{
+	
+}
+
+
 
 /*
 *アニメーションの設定
