@@ -79,38 +79,45 @@ $(function(){
   		if($window_size < $sm){
             $("#form_submit").hide();
             $("#form_submit_sm").show();
-            $("[id^=form_]").css("width", "100%");
-            $("#form_cost").css("width", "80%");
+            $("[id^=form_]").css("width", "90%");
+            $("[id^=form_]").css("padding-left", "0");
+            $("#form_cost").css("width", "70%");
             $(".form_padding").css("display", "none");
             $("#form_submit").parent().parent().children().css("padding", "0px");
   		}else{
             $("#form_submit").show();
             $("#form_submit_sm").hide();
             $("[id^=form_]").css("width", "60%");
+            $("[id^=form_]").css("padding-left", "10%");
             $(".form_padding").css("display", "inline");
             $("#form_submit").parent().parent().children().css("padding", "8px");
   		}
         $("#form_submit_sm").css("border", "2px solid Maroon");
+        $("#form_submit_sm").css("width", "100%");
+        $("#form_submit_sm").css("margin", "0");
     });
     
     $(window).on('resize', function(){
     	var $window_size = $(window).width();
   		if($window_size < $sm){
-            $("[id^=form_]").css("width", "100%");
-            $("#form_cost").css("width", "80%");
+            $("[id^=form_]").css("width", "90%");
+            $("[id^=form_]").css("padding-left", "0");
+            $("#form_cost").css("width", "70%");
             $(".form_padding").css("display", "none");
     		$("#form_submit").hide();
             $("#form_submit_sm").show();
             $("#form_submit").parent().parent().children().css("padding", "0px");
-            console.log($("#form_submit").parent().parent().html());
             $("#form_submit_sm").css("border", "2px solid Maroon");
     	}else{
             $("[id^=form_]").css("width", "60%");
+            $("[id^=form_]").css("padding-left", "10%");
             $(".form_padding").css("display", "inline");
     		$("#form_submit").show();
             $("#form_submit_sm").hide();
             $("#form_submit").parent().parent().children().css("padding", "8px");
     	}
+        $("#form_submit_sm").css("width", "100%");
+        $("#form_submit_sm").css("margin", "0");
     });
 
     /*
@@ -119,7 +126,7 @@ $(function(){
     $(document).ready(function(){
         var $window_size = $(window).width();
         if($window_size < $sm){
-            $(".main_contents").css("min-height", "350px");
+            $(".main_scontents").css("min-height", "350px");
         }else{
             $(".main_contents").css("min-height", "500px");
         }
