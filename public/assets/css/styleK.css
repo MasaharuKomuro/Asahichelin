@@ -268,17 +268,16 @@
 */
 .panel{
 	margin: 0 10px;
-	box-shadow: 2px 2px 2px Maroon;
 }
 .panel-heading-list{
 	text-align: left;
 	font-size: 22px;
-	background-color: DarkRed !important;
+	background-color: #999 !important;
 	color: white !important;
 	padding: 3px 10px !important;
 }
 .panel-body{
-	background-color: LightGoldenrodYellow;
+	background-color: WhiteSmoke;
 	/*border: 1px solid DarkRed;*/
 }
 .list_content_main{
@@ -298,29 +297,33 @@
 .left-info div{
 	text-align: center;
 	box-shadow: 0 0 5px white inset;
-	color: white;
-	padding: 4px;
+	padding: 2px;
+	margin: 2px;
 	height: 30px;
+	background-color: #ddd;
+	border: 2px solid #999;
+	border-radius: 5px;
 }
-.kind{
-	background-color: LightCoral;
-}
-.cost{
-	background-color: LightGreen;
+
+.kind, .cost{
+	color: black;
 }
 .public_room{
-	background-color: Gainsboro;
+	color: white !important;
+	border: 0px solid gray !important;
 }
 .private_room{
-	background-color: SkyBlue;
+	background-color: #ddd !important;
+	color: black;
+	border: 2px solid #999 !important;
 }
 .right-info{
-	padding: 4px;
+	padding: 6px;
 }
 .right-info p{
 	height: 30px;
-	margin: 0 5px;
-	padding: 2px 0;
+	margin: 2px 5px;
+	padding: 2px 8px;
 }
 .url, .url:hover{
 	color: blue !important;
@@ -328,10 +331,46 @@
 .url:hover{
 	text-decoration: underline;
 }
-.consideration{
-	
+.overflow-hidden{
+	overflow: hidden;
 }
 
+.telephone::before{
+	content: "\1F4DE  ";
+}
+.partition{
+	height: 65%;
+	padding: 0 8px;
+}
+.submit_list{
+	width: 60%;
+	border-radius: 5px;
+	margin: 10px 0;
+	font-size: 18px
+}
+
+/*
+*************************  for 詳細ページ  *************************
+*/
+
+.signature{
+	text-align: right;
+}
+
+.recommender{
+	padding-left: 13px !important; 
+}
+
+.pannel-comments{
+	background-color: white;
+}
+
+/*
+*************************  forページネーション  *************************
+*/
+.pagination li{
+	margin: 0;
+}
 
 
 /*

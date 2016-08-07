@@ -80,7 +80,7 @@ $(function(){
             $("#form_submit").hide();
             $("#form_submit_sm").show();
             $("[id^=form_]").css("width", "90%");
-            $("[id^=form_]").css("padding-left", "0");
+            //$("[id^=form_]").css("padding-left", "0");
             $("#form_cost").css("width", "70%");
             $(".form_padding").css("display", "none");
             $("#form_submit").parent().parent().children().css("padding", "0px");
@@ -88,7 +88,7 @@ $(function(){
             $("#form_submit").show();
             $("#form_submit_sm").hide();
             $("[id^=form_]").css("width", "60%");
-            $("[id^=form_]").css("padding-left", "10%");
+            //$("[id^=form_]").css("padding-left", "10%");
             $(".form_padding").css("display", "inline");
             $("#form_submit").parent().parent().children().css("padding", "8px");
   		}
@@ -101,7 +101,7 @@ $(function(){
     	var $window_size = $(window).width();
   		if($window_size < $sm){
             $("[id^=form_]").css("width", "90%");
-            $("[id^=form_]").css("padding-left", "0");
+            //$("[id^=form_]").css("padding-left", "0");
             $("#form_cost").css("width", "70%");
             $(".form_padding").css("display", "none");
     		$("#form_submit").hide();
@@ -110,7 +110,7 @@ $(function(){
             $("#form_submit_sm").css("border", "2px solid Maroon");
     	}else{
             $("[id^=form_]").css("width", "60%");
-            $("[id^=form_]").css("padding-left", "10%");
+            //$("[id^=form_]").css("padding-left", "10%");
             $(".form_padding").css("display", "inline");
     		$("#form_submit").show();
             $("#form_submit_sm").hide();
@@ -140,8 +140,60 @@ $(function(){
         }
     });
 
-	
+    /*
+    *************************  for 一覧ページ  *************************
+    */
+    $(document).ready(function(){
+        var $window_size = $(window).width();
+        if($window_size < $sm){
+            $(".submit_list").css("width", "100%");
+            $(".submit_list").css("border-radius", "0px");
+        }else{
+            $(".submit_list").css("width", "60%");
+            $(".submit_list").css("border-radius", "5px");
+        }
+    });
 
+    $(window).on('resize', function(){
+        var $window_size = $(window).width();
+        if($window_size < $sm){
+            $(".submit_list").css("width", "100%");
+            $(".submit_list").css("border-radius", "0px");
+        }else{
+            $(".submit_list").css("width", "60%");
+            $(".submit_list").css("border-radius", "5px");
+        }
+    });
+
+
+    /*
+    *************************  for 登録ボタン用  *************************
+    */
+    var href = window.location.href
+    $(document).ready(function(){
+        var $window_size = $(window).width();
+        if($window_size < $sm){
+            
+        }else{
+            
+        }
+        var href = window.location.href;
+        if (href.match("detail")){
+            $("#form_submit_sm").val("コメント投稿");
+        }else if(href.match("search")){
+            $("#form_submit_sm").val("検索");
+        }
+
+    });
+
+    $(window).on('resize', function(){
+        var $window_size = $(window).width();
+        var href = window.location.href
+        if($window_size < $sm){
+        }else{  
+        }
+    });
+    
 
 
 })
